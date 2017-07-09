@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+
+    <string name="weather_fragment_name">"Погода в "</string>
+
+    <string name="nav_drawer_weather">Погода</string>
+    <string name="nav_drawer_settings">Настройки</string>
+    <string name="nav_drawer_about">О приложении</string>
+    <string name="nav_drawer_metric">Еденицы измерения</string>
+
+    <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация</string>
+</resources>

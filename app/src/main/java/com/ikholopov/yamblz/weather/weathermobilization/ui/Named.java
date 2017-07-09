@@ -5,5 +5,5 @@ package com.ikholopov.yamblz.weather.weathermobilization.ui;
  */
 
 public interface Named {
-    String getName();
+    int getNameId();
 }

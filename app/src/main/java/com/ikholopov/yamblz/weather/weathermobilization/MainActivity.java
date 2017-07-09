@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity
             if(savedInstanceState == null) {
                 WeatherFragment fragment = WeatherFragment.newInstance();
                 fragment.setArguments(getIntent().getExtras());
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,
-                        fragment.getName())
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)
                         .commit();
                 updateToolbar(fragment);
             }
@@ -67,15 +66,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_weather) {
-            if(shouldReplaceFragment(WeatherFragment.mFragmentName)) {
+            if(shouldReplaceFragment(WeatherFragment.FragmentNameId)) {
                 placeFragment(WeatherFragment.newInstance(), false);
             }
         } else if(id == R.id.nav_settings) {
-            if(shouldReplaceFragment(SettingsFragment.mFragmentName)) {
+            if(shouldReplaceFragment(SettingsFragment.FragmentNameId)) {
                 placeFragment(SettingsFragment.newInstance(), true);
             }
         } else if(id == R.id.nav_about) {
-            if(shouldReplaceFragment(AboutFragment.mFragmentName)) {
+            if(shouldReplaceFragment(AboutFragment.FragmentNameId)) {
                 placeFragment(AboutFragment.newInstance(), true);
             }
         }
@@ -84,13 +83,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private boolean shouldReplaceFragment(String fragmentName) {
+    private boolean shouldReplaceFragment(int fragmentNameId) {
         Named currentFragment = (Named)getSupportFragmentManager()
                 .findFragmentById(R.id.content_frame);
-        if(currentFragment == null || !currentFragment.getName().equals(fragmentName)) {
-            return true;
-        }
-        return false;
+        return currentFragment == null ||
+                currentFragment.getNameId() != fragmentNameId;
     }
 
     private void placeFragment(Fragment fragment, boolean addToStack) {
@@ -106,7 +103,8 @@ public class MainActivity extends AppCompatActivity
 
     private void updateToolbar(Fragment current) {
         if(current != null && current instanceof Named) {
-            getSupportActionBar().setTitle(((Named)current).getName());
+            getSupportActionBar().setTitle(
+                    getString(((Named)current).getNameId()));
         }
     }
 }

@@ -15,7 +15,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.R;
  */
 public class AboutFragment extends Fragment implements Named {
 
-    public static final String mFragmentName = "About";
+    public static final int FragmentNameId = R.string.nav_drawer_about;
 
     public AboutFragment() {
     }
@@ -32,7 +32,7 @@ public class AboutFragment extends Fragment implements Named {
     }
 
     @Override
-    public String getName() {
-        return mFragmentName;
+    public int getNameId() {
+        return FragmentNameId;
     }
 }

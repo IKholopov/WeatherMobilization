@@ -12,7 +12,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Named {
 
-    public static final String mFragmentName = "Settings";
+    public static final int FragmentNameId = R.string.nav_drawer_settings;
 
     public SettingsFragment() {
     }
@@ -33,7 +33,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named 
     }
 
     @Override
-    public String getName() {
-        return mFragmentName;
+    public int getNameId() {
+        return FragmentNameId;
     }
 }
