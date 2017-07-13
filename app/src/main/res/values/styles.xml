@@ -16,6 +16,9 @@
         <item name="colorSwitchThumbNormal">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
 
 
     <style name="AppTheme.NoActionBar">
