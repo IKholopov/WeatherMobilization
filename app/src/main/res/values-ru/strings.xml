@@ -11,4 +11,5 @@
     <string name="nav_drawer_metric">Еденицы измерения</string>
 
     <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация</string>
+    <string name="app_name">Погода</string>
 </resources>
