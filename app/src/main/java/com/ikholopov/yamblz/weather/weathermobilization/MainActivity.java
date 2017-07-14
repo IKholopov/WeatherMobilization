@@ -1,6 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_weather) {
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity
                 currentFragment.getNameId() != fragmentNameId;
     }
 
-    private void placeFragment(Fragment fragment, boolean addToStack) {
+    private void placeFragment(@NonNull Fragment fragment, boolean addToStack) {
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, fragment);

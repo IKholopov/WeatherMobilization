@@ -1,7 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization.ui;
 
 /**
- * Интерфейс для именнованых объектов
+ * Interface for objects with resource name
  */
 
 public interface Named {

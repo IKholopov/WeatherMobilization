@@ -11,7 +11,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.R;
 
 
 /**
- * {@link Named} {@link Fragment} с информацией о приложении.
+ * {@link Named} {@link Fragment} with app information
  */
 public class AboutFragment extends Fragment implements Named {
 

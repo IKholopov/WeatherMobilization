@@ -7,7 +7,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 
 /**
- * {@link Named} {@link PreferenceFragmentCompat} с настройками приложения.
+ * {@link Named} {@link PreferenceFragmentCompat} with app preferences.
  */
 
 public class SettingsFragment extends PreferenceFragmentCompat implements Named {
@@ -20,11 +20,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named 
     public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override

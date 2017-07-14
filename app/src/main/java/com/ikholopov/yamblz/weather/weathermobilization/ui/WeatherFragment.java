@@ -8,17 +8,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
-import com.ikholopov.yamblz.weather.weathermobilization.preferences.Metric;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
 /**
- * {@link Fragment} для отображения погоды.
- * {@link WeatherFragment#newInstance} метод-фабрика для создания фрагмента.
+ * Main {@link Fragment} with weather.
+ * {@link WeatherFragment#newInstance} fabric-method
  */
 public class WeatherFragment extends Fragment implements Named {
 
     public static final int FragmentNameId = R.string.nav_drawer_weather;
 
-    private String mMessage;
+    private String message;
 
     public WeatherFragment() {
         // Пустой конструктор для родителя
@@ -34,21 +34,26 @@ public class WeatherFragment extends Fragment implements Named {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mMessage = Metric.getMetricFromPreference(getContext()).toString(getContext());
+        updateMessage();
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
         TextView textView = (TextView)rootView.findViewById(R.id.weather_message);
-        textView.setText(textView.getText() + " " + mMessage);
+        textView.setText(textView.getText() + " " + message);
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mMessage = Metric.getMetricFromPreference(getContext()).toString(getContext());
+        updateMessage();
     }
 
     @Override
     public int getNameId() {
         return FragmentNameId;
+    }
+
+    private void updateMessage() {
+        message = getString(PreferencesProvider.getMetricFromPreference(getContext())
+                .getStringId());
     }
 }
