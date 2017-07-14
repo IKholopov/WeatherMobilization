@@ -1,33 +1,55 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "com.ikholopov.yamblz.weather.weathermobilization"
-        minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.version
+        versionName versions.versionName
     }
+
+    signingConfigs {
+        yamblz {
+            storeFile file('public_key.jks')
+            storePassword 'public'
+            keyAlias 'key0'
+            keyPassword 'public'
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.yamblz
+            applicationIdSuffix '.debug'
+
+            testCoverageEnabled true
+        }
         release {
+            signingConfig signingConfigs.yamblz
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            testCoverageEnabled true
         }
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:preference-v7:26.0.0-alpha1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:26.0.0-alpha1'
-    testCompile 'junit:junit:4.12'
+    compile libraries.supportAppCompat
+    compile libraries.supportDesign
+    compile libraries.supportPreference
+    compile libraries.supportConstraintLayout
+    compile libraries.support
+
+    compile libraries.butterKnife
+    annotationProcessor libraries.butterKnifeCompiler
+
+    compile libraries.dagger
+    annotationProcessor libraries.daggerCompiler
+
+    testCompile libraries.junit
 }

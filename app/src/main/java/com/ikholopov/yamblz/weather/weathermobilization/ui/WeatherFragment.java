@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Main {@link Fragment} with weather.
  * {@link WeatherFragment#newInstance} fabric-method
@@ -18,10 +21,12 @@ public class WeatherFragment extends Fragment implements Named {
 
     public static final int FragmentNameId = R.string.nav_drawer_weather;
 
-    private String message;
+    private String metric;
+
+    @BindView(R.id.weather_message) TextView mainView;
 
     public WeatherFragment() {
-        // Пустой конструктор для родителя
+        // Required empty constructor
     }
 
     public static WeatherFragment newInstance() {
@@ -36,8 +41,8 @@ public class WeatherFragment extends Fragment implements Named {
 
         updateMessage();
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
-        TextView textView = (TextView)rootView.findViewById(R.id.weather_message);
-        textView.setText(textView.getText() + " " + message);
+        ButterKnife.bind(this, rootView);
+        mainView.setText(mainView.getText() + " " + metric);
         return rootView;
     }
 
@@ -53,7 +58,7 @@ public class WeatherFragment extends Fragment implements Named {
     }
 
     private void updateMessage() {
-        message = getString(PreferencesProvider.getMetricFromPreference(getContext())
+        metric = getString(PreferencesProvider.getMetricFromPreference(getContext())
                 .getStringId());
     }
 }

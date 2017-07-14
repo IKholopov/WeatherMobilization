@@ -1,0 +1,35 @@
+ext.versions = [
+        version                 :1,
+        versionname             :"1.0",
+
+        compileSdk              :25,
+        buildTools              :"25.0.3",
+
+        minSdk                  :19,
+        targetSdk               :26,
+
+        supportLibs             :"25.3.1",
+        constraintLayout        :"1.0.2",
+
+        butterKnife             :"8.7.0",
+
+        dagger                  :"2.11",
+
+        junit                   :"4.12"
+]
+
+ext.libraries = [
+        supportAppCompat           :"com.android.support:appcompat-v7:$versions.supportLibs",
+        supportDesign              :"com.android.support:design:$versions.supportLibs",
+        supportPreference           :"com.android.support:preference-v7:$versions.supportLibs",
+        supportConstraintLayout    :"com.android.support.constraint:constraint-layout:$versions.constraintLayout",
+        support                    :"com.android.support:support-v4:$versions.supportLibs",
+
+        butterKnife                :"com.jakewharton:butterknife:$versions.butterKnife",
+        butterKnifeCompiler        :"com.jakewharton:butterknife-compiler:$versions.butterKnife",
+
+        dagger                     :"com.google.dagger:dagger:$versions.dagger",
+        daggerCompiler             :"com.google.dagger:dagger-compiler:$versions.dagger",
+
+        junit                      :"junit:junit:$versions.junit"
+]
