@@ -1,4 +1,4 @@
-package com.ikholopov.yamblz.weather.weathermobilization.ui;
+package com.ikholopov.yamblz.weather.weathermobilization.ui.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

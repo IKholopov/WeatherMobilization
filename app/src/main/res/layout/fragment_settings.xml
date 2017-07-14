@@ -3,5 +3,5 @@
     android:id="@id/android:list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ikholopov.yamblz.weather.weathermobilization.ui.SettingsFragment">
+    tools:context="com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.SettingsFragment">
 </FrameLayout>

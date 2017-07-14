@@ -1,4 +1,4 @@
-package com.ikholopov.yamblz.weather.weathermobilization.ui;
+package com.ikholopov.yamblz.weather.weathermobilization.ui.fragments;
 
 
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
 
 
 /**

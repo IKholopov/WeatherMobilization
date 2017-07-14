@@ -1,10 +1,12 @@
-package com.ikholopov.yamblz.weather.weathermobilization.ui;
+package com.ikholopov.yamblz.weather.weathermobilization.ui.fragments;
 
 
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.view.MenuItem;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
 
 /**
  * {@link Named} {@link PreferenceFragmentCompat} with app preferences.
