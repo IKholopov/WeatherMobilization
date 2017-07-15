@@ -9,13 +9,9 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposer;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.NavigatableActivity;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.AboutFragment;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.SettingsFragment;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFragment;
@@ -51,7 +47,10 @@ public class MainViewComposerImpl implements MainViewComposer {
         if(activity.findViewById(R.id.content_frame) != null && initial) {
             WeatherFragment fragment = WeatherFragment.newInstance();
             fragment.setArguments(activity.getIntent().getExtras());
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment)
+            activity.getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in, R.anim.slide_out,
+                            R.anim.slide_in, R.anim.slide_out)
+                    .replace(R.id.content_frame, fragment)
                     .commit();
         }
         Fragment current = activity.getSupportFragmentManager().findFragmentById(R.id.content_frame);
@@ -114,6 +113,8 @@ public class MainViewComposerImpl implements MainViewComposer {
         activity.getSupportFragmentManager()
                 .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in, R.anim.slide_out,
+                        R.anim.slide_in, R.anim.slide_out)
                 .replace(R.id.content_frame, fragment);
         if(addToStack) {
             transaction = transaction.addToBackStack(null);
