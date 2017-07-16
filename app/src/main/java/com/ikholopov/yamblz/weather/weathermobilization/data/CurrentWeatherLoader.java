@@ -32,7 +32,7 @@ import java.net.URL;
 
 public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
 
-    private final String CACHED_FILE_NAME= "CachedCurrenWeather.json";
+    private final String CACHED_FILE_NAME= "CachedCurrentWeather.json";
     private final String TAG = "CurrentWeatherLoader";
 
     private boolean forceNetLoad;
@@ -62,7 +62,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
     }
 
     @Override
-    public void setForceLoad() {
+    public void forceNetLoad() {
         forceNetLoad = true;
         this.forceLoad();
     }
@@ -89,6 +89,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
             URL url = new URL(urlString);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
+            urlConnection.setUseCaches(false);
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();

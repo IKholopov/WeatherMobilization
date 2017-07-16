@@ -12,5 +12,5 @@ public abstract class WeatherLoader<D> extends AsyncTaskLoader<D> {
         super(context);
     }
 
-    abstract void setForceLoad();
+    abstract void forceNetLoad();
 }

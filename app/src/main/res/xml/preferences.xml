@@ -2,7 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <SwitchPreferenceCompat
-        android:key="@string/prefernce_key_metrics"
+        android:key="@string/preference_key_metrics"
         android:defaultValue="true"
         app:layout="@layout/degree_switcher" />
+
+
+    <SwitchPreferenceCompat
+        android:key="@string/preference_key_autoupdate"
+        android:defaultValue="true"
+        android:title="@string/background_update"/>
 </PreferenceScreen>

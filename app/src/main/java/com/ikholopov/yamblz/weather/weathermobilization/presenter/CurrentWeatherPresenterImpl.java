@@ -4,8 +4,10 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.os.Bundle;
 
+import com.ikholopov.yamblz.weather.weathermobilization.WeatherUpdateService;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFragment;
 
 /**
@@ -25,11 +27,14 @@ public class CurrentWeatherPresenterImpl implements CurrentWeatherPresenter, Loa
         loader = new CurrentWeatherLoader(this.weatherFragment.getContext());
         weatherFragment.getActivity().getSupportLoaderManager()
                 .initLoader(CURRENT_WEATHER_LOADER_ID, null, this).forceLoad();
+        if(PreferencesProvider.getAutoupdateEnabledPreference(weatherFragment.getContext())) {
+            WeatherUpdateService.setServiceEnabled(weatherFragment.getContext(), true);
+        }
     }
 
     @Override
     public void forceReload() {
-        loader.setForceLoad();
+        loader.forceNetLoad();
     }
 
     @Override
