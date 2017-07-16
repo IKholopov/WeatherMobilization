@@ -44,6 +44,5 @@ public class CurrentWeatherPresenterImpl implements CurrentWeatherPresenter, Loa
 
     @Override
     public void onLoaderReset(Loader<CurrentWeather> loader) {
-
     }
 }

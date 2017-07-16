@@ -1,7 +1,9 @@
 package com.ikholopov.yamblz.weather.weathermobilization.ui.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ public class WeatherFragment extends Fragment implements Named {
     private CurrentWeatherPresenter presenter;
 
     @BindView(R.id.weather_message) TextView mainView;
+    @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
 
     public WeatherFragment() {
         // Required empty constructor
@@ -49,6 +52,20 @@ public class WeatherFragment extends Fragment implements Named {
         presenter = new CurrentWeatherPresenterImpl();
         presenter.bind(this);
         mainView.setText(mainView.getText() + " " + metric);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.forceReload();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(refreshLayout.isRefreshing()) {
+                            refreshLayout.setRefreshing(false);
+                        }
+                    }
+                }, 3000);
+            }
+        });
         updateMessage();
         return rootView;
     }
@@ -73,6 +90,9 @@ public class WeatherFragment extends Fragment implements Named {
 
     public void setWeather(CurrentWeather weather) {
         this.weather = weather;
+        if(refreshLayout.isRefreshing()) {
+            refreshLayout.setRefreshing(false);
+        }
         updateMessage();
     }
 }

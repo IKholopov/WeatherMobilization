@@ -64,6 +64,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
     @Override
     public void setForceLoad() {
         forceNetLoad = true;
+        this.forceLoad();
     }
 
     //Must not be called on MainThread
