@@ -9,6 +9,8 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.version
         versionName versions.versionName
+        resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
+        resValue "string", "location", (project.findProperty("LOCATION") ?: "")
     }
 
     signingConfigs {
@@ -52,4 +54,6 @@ dependencies {
     annotationProcessor libraries.daggerCompiler
 
     testCompile libraries.junit
+
+    compile libraries.gson
 }

@@ -15,7 +15,9 @@ ext.versions = [
 
         dagger                  :"2.11",
 
-        junit                   :"4.12"
+        junit                   :"4.12",
+
+        gson                    :"2.8.1"
 ]
 
 ext.libraries = [
@@ -31,5 +33,7 @@ ext.libraries = [
         dagger                     :"com.google.dagger:dagger:$versions.dagger",
         daggerCompiler             :"com.google.dagger:dagger-compiler:$versions.dagger",
 
-        junit                      :"junit:junit:$versions.junit"
+        junit                      :"junit:junit:$versions.junit",
+
+        gson                       :"com.google.code.gson:gson:$versions.gson"
 ]
