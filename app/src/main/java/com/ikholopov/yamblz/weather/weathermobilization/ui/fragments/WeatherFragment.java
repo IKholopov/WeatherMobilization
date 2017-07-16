@@ -7,10 +7,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
+import com.ikholopov.yamblz.weather.weathermobilization.data.WeatherUtility;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.Metric;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenter;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
@@ -31,7 +34,9 @@ public class WeatherFragment extends Fragment implements Named {
     private CurrentWeather weather = null;
     private CurrentWeatherPresenter presenter;
 
-    @BindView(R.id.weather_message) TextView mainView;
+    @BindView(R.id.weather_location) TextView weatherLocation;
+    @BindView(R.id.weather_message) TextView weatherMessage;
+    @BindView(R.id.weather_icon_view) ImageView weatherIcon;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
 
     public WeatherFragment() {
@@ -51,7 +56,7 @@ public class WeatherFragment extends Fragment implements Named {
         ButterKnife.bind(this, rootView);
         presenter = new CurrentWeatherPresenterImpl();
         presenter.bind(this);
-        mainView.setText(mainView.getText() + " " + metric);
+        weatherMessage.setText(weatherMessage.getText() + " " + metric);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -66,14 +71,14 @@ public class WeatherFragment extends Fragment implements Named {
                 }, 3000);
             }
         });
-        updateMessage();
+        updateWeatherDisplay();
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateMessage();
+        updateWeatherDisplay();
     }
 
     @Override
@@ -81,11 +86,21 @@ public class WeatherFragment extends Fragment implements Named {
         return FragmentNameId;
     }
 
-    private void updateMessage() {
+    private void updateWeatherDisplay() {
         metric = getString(PreferencesProvider.getMetricFromPreference(getContext())
                 .getStringId());
-        mainView.setText(weather == null ? (mainView.getText() + " " + metric)
-                : String.format("%s", weather.getTemp()));
+        if(weather == null) {
+            weatherLocation.setText(getString(R.string.no_internet_connection));
+            weatherIcon.setVisibility(View.INVISIBLE);
+            weatherMessage.setText(getString(R.string.swipe_down_to_refresh));
+            return;
+        }
+        weatherIcon.setVisibility(View.VISIBLE);
+        weatherIcon.setImageResource(WeatherUtility.getImageIdForWeatherId(weather.getWeatherId()));
+        weatherLocation.setText(weather.getLocationName());
+        weatherMessage.setText(WeatherUtility.formatTemperature(getContext(), weather.getTemp(),
+                PreferencesProvider.getMetricFromPreference(getContext()) == Metric.CELSIUS));
+
     }
 
     public void setWeather(CurrentWeather weather) {
@@ -93,6 +108,6 @@ public class WeatherFragment extends Fragment implements Named {
         if(refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }
-        updateMessage();
+        updateWeatherDisplay();
     }
 }

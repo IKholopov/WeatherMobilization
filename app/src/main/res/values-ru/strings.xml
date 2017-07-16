@@ -12,4 +12,7 @@
 
     <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация</string>
     <string name="app_name">Погода</string>
+    <string name="background_update">Обновлять погоду автоматически</string>
+    <string name="no_internet_connection">Нет соединения</string>
+    <string name="swipe_down_to_refresh">Потяните вниз, чтобы попробывать обновить</string>
 </resources>

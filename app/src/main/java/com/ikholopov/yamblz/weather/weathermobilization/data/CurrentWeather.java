@@ -21,6 +21,15 @@ public class CurrentWeather {
     public float getTemp() {
         return main.temp;
     }
+
+    public String getLocationName() {
+        return name;
+    }
+
+    public int getWeatherId() {
+        return weather[0].id;
+    }
+
 }
 
 class Coordinates {

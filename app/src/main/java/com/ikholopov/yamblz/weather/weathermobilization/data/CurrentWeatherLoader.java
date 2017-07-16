@@ -76,13 +76,16 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         final String FORECAST_BASE_URL = "http://api.openweathermap.org/data/2.5/weather";
         final String QUERY_PARAM = "q";
         final String MODE_PARAM = "mode";
+        final String UNITS_PARAM = "units";
         final String APPID_PARAM = "appid";
 
         final String mode = "json";
+        final String units = "metric";
 
         String urlString = Uri.parse(FORECAST_BASE_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM, getContext().getString(R.string.location))
                 .appendQueryParameter(MODE_PARAM, mode)
+                .appendQueryParameter(UNITS_PARAM, units)
                 .appendQueryParameter(APPID_PARAM, getContext().getString(R.string.api_key))
                 .build().toString();
         try {
