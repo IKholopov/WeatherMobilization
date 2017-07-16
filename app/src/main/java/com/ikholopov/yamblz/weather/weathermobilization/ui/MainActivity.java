@@ -7,23 +7,40 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
+import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
+import com.ikholopov.yamblz.weather.weathermobilization.di.component.ActivityComponent;
+import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerActivityComponent;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends NavigatableActivity {
 
-    private MainViewComposer composer;
+    @Inject
+    MainViewComposer composer;
+
+    private ActivityComponent activityComponent;
 
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
+
+    public ActivityComponent getActivityComponent() {
+        if(activityComponent == null) {
+            activityComponent = DaggerActivityComponent.builder()
+                    .applicationComponent(WeatherApplication.get(this).getComponent())
+                    .build();
+        }
+        return activityComponent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
+        getActivityComponent().injectMainActivity(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        composer = new MainViewComposerImpl();
         composer.bind(this);
         composer.setUpView(savedInstanceState == null);
     }
