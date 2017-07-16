@@ -4,6 +4,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
 
 /**
+ * Interface that allows force update from the net
  * Created by igor on 7/16/17.
  */
 

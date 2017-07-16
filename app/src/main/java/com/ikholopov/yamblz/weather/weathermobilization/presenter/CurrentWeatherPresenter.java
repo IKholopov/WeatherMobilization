@@ -4,6 +4,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.ui.MainActivity;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFragment;
 
 /**
+ * Presenter for main screen
  * Created by igor on 7/16/17.
  */
 

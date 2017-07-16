@@ -2,14 +2,11 @@ package com.ikholopov.yamblz.weather.weathermobilization.data;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.PerActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,13 +17,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
 /**
+ * Handles updating weather and loading it from local file
  * Created by igor on 7/16/17.
  */
 
@@ -61,6 +58,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         return currentWeather;
     }
 
+    //Call to update weather data from the net, rather than local file
     @Override
     public void forceNetLoad() {
         forceNetLoad = true;
@@ -105,7 +103,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
             if(stringBuffer.length() == 0)
                 return null;
             jsonStr = stringBuffer.toString();
-            saveToCache(jsonStr);
+            saveToCacheFile(jsonStr);
             return jsonStr;
 
         } catch (MalformedURLException e) {
@@ -121,6 +119,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         return null;
     }
 
+    //Must not be called on MainThread
     private CurrentWeather loadWeatherFromFile() throws IOException {
         InputStream file = null;
         try {
@@ -145,7 +144,7 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         }
     }
 
-    private void saveToCache(String jsonString) throws IOException {
+    private void saveToCacheFile(String jsonString) throws IOException {
         OutputStream file = null;
         try {
             file = new FileOutputStream(new File(getContext().getFilesDir(), CACHED_FILE_NAME));

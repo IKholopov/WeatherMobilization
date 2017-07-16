@@ -86,6 +86,8 @@ public class WeatherFragment extends Fragment implements Named {
         return FragmentNameId;
     }
 
+
+    //Update displayed weather
     private void updateWeatherDisplay() {
         metric = getString(PreferencesProvider.getMetricFromPreference(getContext())
                 .getStringId());
@@ -103,6 +105,7 @@ public class WeatherFragment extends Fragment implements Named {
 
     }
 
+    //Update weather
     public void setWeather(CurrentWeather weather) {
         this.weather = weather;
         if(refreshLayout.isRefreshing()) {

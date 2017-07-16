@@ -1,6 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization.data;
 
 /**
+ * POJO for weather provided by OpenWeatherApi
  * Created by igor on 7/16/17.
  */
 

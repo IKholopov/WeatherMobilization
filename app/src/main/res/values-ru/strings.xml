@@ -10,9 +10,10 @@
     <string name="nav_drawer_about">О приложении</string>
     <string name="nav_drawer_metric">Еденицы измерения</string>
 
-    <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация</string>
+    <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация\n
+        <a href="http://www.freepik.com/free-photos-vectors/icon">Иконки сделаны Anindyanfitri - Freepik.com</a></string>
     <string name="app_name">Погода</string>
-    <string name="background_update">Обновлять погоду автоматически</string>
+    <string name="background_update">Обновления погоды</string>
     <string name="no_internet_connection">Нет соединения</string>
     <string name="swipe_down_to_refresh">Потяните вниз, чтобы попробывать обновить</string>
 </resources>

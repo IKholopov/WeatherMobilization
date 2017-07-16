@@ -5,6 +5,7 @@ import android.content.Context;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 
 /**
+ * Utility for dealing with weather icons and units
  * Created by igor on 7/16/17.
  */
 

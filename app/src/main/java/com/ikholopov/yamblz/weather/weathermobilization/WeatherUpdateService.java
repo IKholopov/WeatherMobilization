@@ -9,7 +9,6 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
-import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
 /**
  * Created by igor on 7/16/17.
