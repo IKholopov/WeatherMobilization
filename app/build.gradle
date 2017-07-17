@@ -47,6 +47,8 @@ dependencies {
     compile libraries.supportConstraintLayout
     compile libraries.support
 
+    compile libraries.seekbar
+
     compile libraries.butterKnife
     annotationProcessor libraries.butterKnifeCompiler
 

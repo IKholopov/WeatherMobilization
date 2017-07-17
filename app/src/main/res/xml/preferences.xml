@@ -11,4 +11,16 @@
         android:key="@string/preference_key_autoupdate"
         android:defaultValue="true"
         android:title="@string/background_update"/>
+
+    <com.pavelsikun.seekbarpreference.SeekBarPreferenceCompat
+        android:key="@string/preference_key_update_interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:defaultValue="@integer/default_update_interval"
+        app:msbp_minValue="10"
+        app:msbp_interval="10"
+        app:msbp_maxValue="480"
+        app:msbp_measurementUnit="min"
+        android:title="@string/update_interval"
+        android:inputType="number"/>
 </PreferenceScreen>

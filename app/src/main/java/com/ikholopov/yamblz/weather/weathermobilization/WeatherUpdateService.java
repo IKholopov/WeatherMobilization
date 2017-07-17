@@ -23,7 +23,6 @@ public class WeatherUpdateService extends IntentService {
 
     private final static String SERVICE_NAME = "WEATHER_UPDATE_SERVICE";
     private final static int SERVICE_ID = 0;
-    private final static long REPEAT_TIME = AlarmManager.INTERVAL_HALF_HOUR;
 
     public WeatherUpdateService() {
         super(SERVICE_NAME);
@@ -35,7 +34,7 @@ public class WeatherUpdateService extends IntentService {
         loader.forceNetLoad();
     }
 
-    public static void setServiceEnabled(Context applicationContext, boolean enabled) {
+    public static void setServiceEnabled(Context applicationContext, boolean enabled, int interval) {
         applicationContext = applicationContext.getApplicationContext();
         Intent intent = new Intent(applicationContext, WeatherUpdateService.class);
         PendingIntent pendingIntent = PendingIntent.getService(applicationContext,
@@ -45,7 +44,7 @@ public class WeatherUpdateService extends IntentService {
                 .getSystemService(applicationContext.ALARM_SERVICE);
         if(enabled) {
             manager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000,
-                    REPEAT_TIME, pendingIntent);
+                    interval * 60 * 1000, pendingIntent);
         }
         else {
             manager.cancel(pendingIntent);

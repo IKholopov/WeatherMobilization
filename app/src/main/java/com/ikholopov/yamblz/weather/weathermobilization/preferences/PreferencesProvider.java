@@ -24,4 +24,10 @@ public class PreferencesProvider {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.preference_key_autoupdate), true);
     }
+
+    public static int getUpdateInterval(@NonNull Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(context.getString(R.string.preference_key_update_interval),
+                        context.getResources().getInteger(R.integer.default_update_interval));
+    }
 }

@@ -9,7 +9,10 @@ ext.versions = [
         targetSdk               :26,
 
         supportLibs             :"25.3.1",
+        supportFix              :"25.3.1.1",
         constraintLayout        :"1.0.2",
+
+        seekbar                 :"2.3.0",
 
         butterKnife             :"8.7.0",
 
@@ -23,9 +26,11 @@ ext.versions = [
 ext.libraries = [
         supportAppCompat           :"com.android.support:appcompat-v7:$versions.supportLibs",
         supportDesign              :"com.android.support:design:$versions.supportLibs",
-        supportPreference           :"com.android.support:preference-v7:$versions.supportLibs",
+        supportPreference          :"com.takisoft.fix:preference-v7:$versions.supportFix",
         supportConstraintLayout    :"com.android.support.constraint:constraint-layout:$versions.constraintLayout",
         support                    :"com.android.support:support-v4:$versions.supportLibs",
+
+        seekbar                    :"com.pavelsikun:material-seekbar-preference:$versions.seekbar",
 
         butterKnife                :"com.jakewharton:butterknife:$versions.butterKnife",
         butterKnifeCompiler        :"com.jakewharton:butterknife-compiler:$versions.butterKnife",

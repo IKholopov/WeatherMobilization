@@ -56,9 +56,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if(key.equals(getString(R.string.preference_key_autoupdate))){
+        if(key.equals(getString(R.string.preference_key_autoupdate)) ||
+                key.equals(getString(R.string.preference_key_update_interval))){
             WeatherUpdateService.setServiceEnabled(getContext(),
-                    PreferencesProvider.getAutoupdateEnabledPreference(getContext()));
+                    PreferencesProvider.getAutoupdateEnabledPreference(getContext()),
+                    PreferencesProvider.getUpdateInterval(getContext()));
         }
     }
 }

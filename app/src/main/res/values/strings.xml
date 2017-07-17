@@ -13,10 +13,12 @@
 
     <string name="farhenheit" translatable="false">°F</string>
     <string name="celsius" translatable="false">°C</string>
-    <string name="background_update">Update weather in background</string>
+    <string name="background_update">Autoupdate weather</string>
+    <string name="update_interval">Update interval</string>
 
     <string name="preference_key_metrics" translatable="false">PREF_KEY_METRICS</string>
     <string name="preference_key_autoupdate" translatable="false">PREF_KEY_AUTOUPDATE</string>
+    <string name="preference_key_update_interval" translatable="false">PREF_KEY_UPDATE_INTERVAL</string>
 
     <string name="about_message">Developed by Igor Kholopov for Yandex Mobilization\n
         <a href="http://www.freepik.com/free-photos-vectors/icon">Icon vector created by Anindyanfitri - Freepik.com</a></string>

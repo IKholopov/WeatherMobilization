@@ -28,7 +28,8 @@ public class CurrentWeatherPresenterImpl implements CurrentWeatherPresenter, Loa
         weatherFragment.getActivity().getSupportLoaderManager()
                 .initLoader(CURRENT_WEATHER_LOADER_ID, null, this).forceLoad();
         if(PreferencesProvider.getAutoupdateEnabledPreference(weatherFragment.getContext())) {
-            WeatherUpdateService.setServiceEnabled(weatherFragment.getContext(), true);
+            WeatherUpdateService.setServiceEnabled(weatherFragment.getContext(), true,
+                    PreferencesProvider.getUpdateInterval(weatherFragment.getContext()));
         }
     }
 
