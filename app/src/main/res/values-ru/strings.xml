@@ -16,4 +16,6 @@
     <string name="background_update">Обновления погоды</string>
     <string name="no_internet_connection">Нет соединения</string>
     <string name="swipe_down_to_refresh">Потяните вниз, чтобы попробывать обновить</string>
+    <string name="update_interval">Интервал обновления</string>
+    <string name="minutes">мин</string>
 </resources>

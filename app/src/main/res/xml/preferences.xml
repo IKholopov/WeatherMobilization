@@ -20,7 +20,7 @@
         app:msbp_minValue="10"
         app:msbp_interval="10"
         app:msbp_maxValue="480"
-        app:msbp_measurementUnit="min"
+        app:msbp_measurementUnit="@string/minutes"
         android:title="@string/update_interval"
         android:inputType="number"/>
 </PreferenceScreen>

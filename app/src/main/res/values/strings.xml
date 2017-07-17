@@ -15,6 +15,7 @@
     <string name="celsius" translatable="false">°C</string>
     <string name="background_update">Autoupdate weather</string>
     <string name="update_interval">Update interval</string>
+    <string name="minutes">mins</string>
 
     <string name="preference_key_metrics" translatable="false">PREF_KEY_METRICS</string>
     <string name="preference_key_autoupdate" translatable="false">PREF_KEY_AUTOUPDATE</string>
