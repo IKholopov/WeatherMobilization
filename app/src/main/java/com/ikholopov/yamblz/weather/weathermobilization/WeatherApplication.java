@@ -9,6 +9,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationMod
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposerImpl;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Application
@@ -25,6 +26,12 @@ public class WeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .preferencesProviderModule(new PreferencesProviderModule(getApplicationContext()))

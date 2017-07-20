@@ -20,7 +20,9 @@ ext.versions = [
 
         junit                   :"4.12",
 
-        gson                    :"2.8.1"
+        gson                    :"2.8.1",
+
+        leakCanary              :"1.5.1"
 ]
 
 ext.libraries = [
@@ -40,5 +42,8 @@ ext.libraries = [
 
         junit                      :"junit:junit:$versions.junit",
 
-        gson                       :"com.google.code.gson:gson:$versions.gson"
+        gson                       :"com.google.code.gson:gson:$versions.gson",
+
+        leakCanaryDebug            :"com.squareup.leakcanary:leakcanary-android:$versions.leakCanary",
+        leakCanaryRelease          :"com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
 ]

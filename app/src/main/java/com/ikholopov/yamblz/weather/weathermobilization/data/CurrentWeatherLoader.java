@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 
 import java.io.BufferedReader;
@@ -49,9 +50,10 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         if(currentWeather == null || forceNetLoad) {
             try {
                 currentWeather = loadWeatherFromFile();
-            } catch (IOException e) {
+            } catch (IOException | JsonSyntaxException e) {
                 Log.e(TAG, "Failed to read cache file");
                 e.printStackTrace();
+                currentWeather = null;
             }
         }
         forceNetLoad = false;

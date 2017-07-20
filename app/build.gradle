@@ -55,6 +55,9 @@ dependencies {
     compile libraries.dagger
     annotationProcessor libraries.daggerCompiler
 
+    debugCompile libraries.leakCanaryDebug
+    releaseCompile libraries.leakCanaryRelease
+
     testCompile libraries.junit
 
     compile libraries.gson
