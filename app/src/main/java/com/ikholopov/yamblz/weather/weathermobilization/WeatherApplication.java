@@ -7,6 +7,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.di.component.Application
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerApplicationComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
+import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposerImpl;
 
 /**
@@ -26,7 +27,7 @@ public class WeatherApplication extends Application {
         super.onCreate();
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .mainComposerModule(new MainComposerModule(new MainViewComposerImpl()))
+                .preferencesProviderModule(new PreferencesProviderModule(getApplicationContext()))
                 .build();
         applicationComponent.inject(this);
     }

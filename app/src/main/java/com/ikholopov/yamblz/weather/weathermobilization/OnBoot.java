@@ -6,15 +6,21 @@ import android.content.Intent;
 
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
+import javax.inject.Inject;
+
 /**
  * Created by igor on 7/18/17.
  */
 
 public class OnBoot extends BroadcastReceiver {
+    @Inject
+    PreferencesProvider preferences;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+        WeatherApplication.get(context).getComponent().inject(this);
         WeatherUpdateService.setServiceEnabled(context,
-                PreferencesProvider.getAutoupdateEnabledPreference(context),
-                PreferencesProvider.getUpdateInterval(context));
+                preferences.getAutoupdateEnabledPreference(),
+                preferences.getUpdateInterval());
     }
 }

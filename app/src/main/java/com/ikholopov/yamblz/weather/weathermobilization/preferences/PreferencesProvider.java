@@ -6,13 +6,22 @@ import android.support.v7.preference.PreferenceManager;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 
+import javax.inject.Inject;
+
 /**
  * Simple SharedPreferences wrapper
  * Created by igor on 7/14/17.
  */
 
 public class PreferencesProvider {
-    public static Metric getMetricFromPreference(@NonNull Context context){
+
+    Context context;
+
+    public PreferencesProvider(@NonNull Context context) {
+        this.context = context;
+    }
+
+    public Metric getMetricFromPreference(){
         if(PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.preference_key_metrics), true)) {
             return Metric.CELSIUS;
@@ -20,12 +29,12 @@ public class PreferencesProvider {
         return Metric.FAHRENHEIT;
     }
 
-    public static boolean getAutoupdateEnabledPreference(@NonNull Context context) {
+    public boolean getAutoupdateEnabledPreference() {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(context.getString(R.string.preference_key_autoupdate), true);
     }
 
-    public static int getUpdateInterval(@NonNull Context context) {
+    public int getUpdateInterval() {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt(context.getString(R.string.preference_key_update_interval),
                         context.getResources().getInteger(R.integer.default_update_interval));

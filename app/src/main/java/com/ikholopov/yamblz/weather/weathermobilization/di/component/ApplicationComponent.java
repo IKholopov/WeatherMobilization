@@ -1,26 +1,28 @@
 package com.ikholopov.yamblz.weather.weathermobilization.di.component;
 
-import android.app.Application;
-
+import com.ikholopov.yamblz.weather.weathermobilization.OnBoot;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationModule;
-import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposer;
+import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.SettingsFragment;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**
+/**Provides application context and preferences
  * Created by igor on 7/16/17.
  */
 
 @Singleton
-@Component(modules = { ApplicationModule.class, MainComposerModule.class } )
+@Component(modules = { ApplicationModule.class, PreferencesProviderModule.class })
 public interface ApplicationComponent {
     void inject(WeatherApplication application);
-    void inject(MainViewComposer mainViewComposer);
+    void inject(SettingsFragment fragment);
+    void inject(OnBoot receiver);
+    void inject(CurrentWeatherPresenterImpl presenter);
 
-    Application getApplication();
-    MainViewComposer getMainViewComposer();
+    PreferencesProvider getPreferencesProvider();
 }

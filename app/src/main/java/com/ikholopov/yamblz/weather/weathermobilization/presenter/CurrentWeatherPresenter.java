@@ -1,6 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainActivity;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.ForecastFragment;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFragment;
 
 /**
@@ -9,6 +10,6 @@ import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFrag
  */
 
 public interface CurrentWeatherPresenter {
-    void bind(WeatherFragment weatherFragment);
+    void bind(ForecastFragment weatherFragment);
     void forceReload();
 }

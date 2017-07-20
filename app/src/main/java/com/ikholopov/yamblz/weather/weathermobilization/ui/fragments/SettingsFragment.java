@@ -5,12 +5,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
+import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherUpdateService;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
+
+import javax.inject.Inject;
 
 /**
  * {@link Named} {@link PreferenceFragmentCompat} with app preferences.
@@ -21,12 +27,22 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
 
     public static final int FragmentNameId = R.string.nav_drawer_settings;
 
+    @Inject
+    PreferencesProvider preferences;
+
     public SettingsFragment() {
     }
 
     public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
         return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        WeatherApplication.get(this.getContext()).getComponent().inject(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -59,8 +75,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
         if(key.equals(getString(R.string.preference_key_autoupdate)) ||
                 key.equals(getString(R.string.preference_key_update_interval))){
             WeatherUpdateService.setServiceEnabled(getContext(),
-                    PreferencesProvider.getAutoupdateEnabledPreference(getContext()),
-                    PreferencesProvider.getUpdateInterval(getContext()));
+                    preferences.getAutoupdateEnabledPreference(),
+                    preferences.getUpdateInterval());
         }
     }
 }

@@ -4,11 +4,15 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.os.Bundle;
 
+import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherUpdateService;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.ForecastFragment;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFragment;
+
+import javax.inject.Inject;
 
 /**
  * Created by igor on 7/16/17.
@@ -16,20 +20,23 @@ import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFrag
 
 public class CurrentWeatherPresenterImpl implements CurrentWeatherPresenter, LoaderManager.LoaderCallbacks<CurrentWeather> {
 
-    private WeatherFragment weatherFragment;
+    private ForecastFragment weatherFragment;
     private CurrentWeatherLoader loader;
+
+    @Inject PreferencesProvider preferences;
 
     private final int CURRENT_WEATHER_LOADER_ID = 0;
 
     @Override
-    public void bind(WeatherFragment weatherFragment) {
+    public void bind(ForecastFragment weatherFragment) {
         this.weatherFragment = weatherFragment;
-        loader = new CurrentWeatherLoader(this.weatherFragment.getContext());
-        weatherFragment.getActivity().getSupportLoaderManager()
+        WeatherApplication.get(weatherFragment.getActivityAttachedTo()).getComponent().inject(this);
+        loader = new CurrentWeatherLoader(this.weatherFragment.getActivityAttachedTo());
+        weatherFragment.getActivityAttachedTo().getSupportLoaderManager()
                 .initLoader(CURRENT_WEATHER_LOADER_ID, null, this).forceLoad();
-        if(PreferencesProvider.getAutoupdateEnabledPreference(weatherFragment.getContext())) {
-            WeatherUpdateService.setServiceEnabled(weatherFragment.getContext(), true,
-                    PreferencesProvider.getUpdateInterval(weatherFragment.getContext()));
+        if(preferences.getAutoupdateEnabledPreference()) {
+            WeatherUpdateService.setServiceEnabled(weatherFragment.getActivityAttachedTo(), true,
+                    preferences.getUpdateInterval());
         }
     }
 

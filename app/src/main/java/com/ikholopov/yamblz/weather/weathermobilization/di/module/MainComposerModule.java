@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
+ * Provides Composer for MainActivity
  * Created by igor on 7/16/17.
  */
 

@@ -8,8 +8,9 @@ import android.view.MenuItem;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.ActivityComponent;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerActivityComponent;
+import com.ikholopov.yamblz.weather.weathermobilization.di.component.ViewComponent;
+import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerViewComponent;
+import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
 
 import javax.inject.Inject;
 
@@ -21,24 +22,25 @@ public class MainActivity extends NavigatableActivity {
     @Inject
     MainViewComposer composer;
 
-    private ActivityComponent activityComponent;
+    private ViewComponent viewComponent;
 
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
 
-    public ActivityComponent getActivityComponent() {
-        if(activityComponent == null) {
-            activityComponent = DaggerActivityComponent.builder()
+    public ViewComponent getViewComponent() {
+        if(viewComponent == null) {
+            viewComponent = DaggerViewComponent.builder()
                     .applicationComponent(WeatherApplication.get(this).getComponent())
+                    .mainComposerModule(new MainComposerModule(new MainViewComposerImpl()))
                     .build();
         }
-        return activityComponent;
+        return viewComponent;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
-        getActivityComponent().injectMainActivity(this);
+        getViewComponent().inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         composer.bind(this);
