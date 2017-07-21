@@ -6,9 +6,7 @@ import android.content.Context;
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.ApplicationComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerApplicationComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationModule;
-import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposerImpl;
 import com.squareup.leakcanary.LeakCanary;
 
 /**

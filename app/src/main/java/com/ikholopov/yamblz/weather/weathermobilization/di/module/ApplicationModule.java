@@ -4,6 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.LoaderNetController;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherNetController;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherServiceController;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -28,5 +33,15 @@ public class ApplicationModule {
     @Provides
     Context provideContext() {
         return  application.getApplicationContext();
+    }
+
+    @Provides
+    UpdateServiceController provideServiceController() {
+        return new WeatherServiceController();
+    }
+
+    @Provides
+    LoaderNetController provideLoaderNetController() {
+        return new WeatherNetController();
     }
 }
