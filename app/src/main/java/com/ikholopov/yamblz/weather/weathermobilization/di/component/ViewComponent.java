@@ -4,7 +4,6 @@ import com.ikholopov.yamblz.weather.weathermobilization.di.PerView;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.ActivityModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.CurrentWeatherPresenterModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainActivity;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposer;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.WeatherFragment;

@@ -7,6 +7,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.ForecastFragment;
 
 /**
+ * Responsible for Loader initialization and handling requests to it
  * Created by igor on 7/21/17.
  */
 

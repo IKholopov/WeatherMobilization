@@ -1,15 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.os.Bundle;
-
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
-import com.ikholopov.yamblz.weather.weathermobilization.WeatherUpdateService;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.ApplicationComponent;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.ViewComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.ForecastFragment;
 

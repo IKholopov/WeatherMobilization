@@ -6,8 +6,6 @@ import android.support.v7.preference.PreferenceManager;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 
-import javax.inject.Inject;
-
 /**
  * Simple SharedPreferences wrapper
  * Created by igor on 7/14/17.

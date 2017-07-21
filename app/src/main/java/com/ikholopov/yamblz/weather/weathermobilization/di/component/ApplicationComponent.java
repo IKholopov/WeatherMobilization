@@ -8,7 +8,6 @@ import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationMod
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.SettingsFragment;
 
@@ -16,7 +15,8 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-/**Provides application context and preferences
+/**
+ * Provides application context and preferences
  * Created by igor on 7/16/17.
  */
 
