@@ -1,6 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization.di.module;
 
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposer;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.MainViewComposerImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,8 +16,8 @@ public class MainComposerModule {
 
     private MainViewComposer composer;
 
-    public MainComposerModule(MainViewComposer composer) {
-        this.composer = composer;
+    public MainComposerModule() {
+        this.composer = new MainViewComposerImpl();
     }
 
     @Provides

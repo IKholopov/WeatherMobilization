@@ -30,8 +30,8 @@ import java.net.URL;
 
 public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
 
-    private final String CACHED_FILE_NAME= "CachedCurrentWeather.json";
-    private final String TAG = "CurrentWeatherLoader";
+    private static final String CACHED_FILE_NAME= "CachedCurrentWeather.json";
+    private static final String TAG = "CurrentWeatherLoader";
 
     private boolean forceNetLoad;
     private CurrentWeather currentWeather;
@@ -110,13 +110,10 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
 
         } catch (MalformedURLException e) {
             Log.e(TAG, "Invalid url");
-            e.printStackTrace();
         } catch (ProtocolException e) {
             Log.e(TAG, "Protocol error");
-            e.printStackTrace();
         } catch (IOException e) {
             Log.e(TAG, "Url connection failed");
-            e.printStackTrace();
         }
         return null;
     }
@@ -126,10 +123,14 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         InputStream file = null;
         try {
             file = new FileInputStream(new File(getContext().getFilesDir(), CACHED_FILE_NAME));
-
         } catch (FileNotFoundException e) {
             fetchAndSaveCurrentWeatherJson();
-        } try {
+        } finally {
+            if(file != null) {
+                file.close();
+            }
+        }
+        try {
             file = new FileInputStream(new File(getContext().getFilesDir(), CACHED_FILE_NAME));
             int size = file.available();
             byte[] buffer = new byte[size];
@@ -156,7 +157,6 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
             Log.e(TAG, "Failed to create cache file");
         } catch (IOException e) {
             Log.e(TAG, "Failed to write to cache file");
-            e.printStackTrace();
         } finally {
             if(file != null) {
                 file.close();

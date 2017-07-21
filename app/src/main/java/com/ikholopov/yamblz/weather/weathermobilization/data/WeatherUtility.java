@@ -10,12 +10,16 @@ import com.ikholopov.yamblz.weather.weathermobilization.R;
  */
 
 public class WeatherUtility {
+
+    private static final double FARHENHEIT_SCALE = 9/5;
+    private static final double FARHENHEIT_BASE = 32;
+
     public static String formatTemperature(Context context, double temperature, boolean isMetric) {
 
         double temp;
         String grad;
         if ( !isMetric ) {
-            temp = 9*temperature/5+32;
+            temp = FARHENHEIT_SCALE * temperature + FARHENHEIT_BASE;
             grad = context.getString(R.string.farhenheit);
         } else {
             temp = temperature;

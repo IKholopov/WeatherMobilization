@@ -21,8 +21,8 @@ public class WeatherUpdateService extends IntentService {
      * @param name Used to name the worker thread, important only for debugging.
      */
 
-    private final static String SERVICE_NAME = "WEATHER_UPDATE_SERVICE";
-    private final static int SERVICE_ID = 0;
+    private static final String SERVICE_NAME = "WEATHER_UPDATE_SERVICE";
+    private static final int SERVICE_ID = 0;
 
     public WeatherUpdateService() {
         super(SERVICE_NAME);
@@ -40,8 +40,8 @@ public class WeatherUpdateService extends IntentService {
         PendingIntent pendingIntent = PendingIntent.getService(applicationContext,
                 SERVICE_ID, intent, 0);
 
-        AlarmManager manager = (AlarmManager) applicationContext
-                .getSystemService(applicationContext.ALARM_SERVICE);
+        AlarmManager manager = (AlarmManager) applicationContext.getSystemService(
+                applicationContext.ALARM_SERVICE);
         if(enabled) {
             manager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000,
                     interval * 60 * 1000, pendingIntent);

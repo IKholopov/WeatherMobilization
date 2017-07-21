@@ -1,6 +1,5 @@
 package com.ikholopov.yamblz.weather.weathermobilization.ui.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
-import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
 import com.ikholopov.yamblz.weather.weathermobilization.data.WeatherUtility;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.Metric;
@@ -35,7 +33,7 @@ import butterknife.ButterKnife;
  */
 public class WeatherFragment extends Fragment implements Named, ForecastFragment {
 
-    public static final int FragmentNameId = R.string.nav_drawer_weather;
+    public static final int FRAGMENT_NAME_ID = R.string.nav_drawer_weather;
 
     private String metric;
     private CurrentWeather weather = null;
@@ -94,7 +92,7 @@ public class WeatherFragment extends Fragment implements Named, ForecastFragment
 
     @Override
     public int getNameId() {
-        return FragmentNameId;
+        return FRAGMENT_NAME_ID;
     }
 
 

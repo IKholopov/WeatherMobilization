@@ -30,7 +30,7 @@ public class MainActivity extends NavigatableActivity {
         if(viewComponent == null) {
             viewComponent = DaggerViewComponent.builder()
                     .applicationComponent(WeatherApplication.get(this).getComponent())
-                    .mainComposerModule(new MainComposerModule(new MainViewComposerImpl()))
+                    .mainComposerModule(new MainComposerModule())
                     .build();
         }
         return viewComponent;

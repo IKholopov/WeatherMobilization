@@ -75,7 +75,7 @@ public class MainViewComposerImpl implements MainViewComposer {
         }
         switch(navId) {
             case R.id.nav_weather:
-                if(shouldReplaceFragment(WeatherFragment.FragmentNameId)) {
+                if(shouldReplaceFragment(WeatherFragment.FRAGMENT_NAME_ID)) {
                     placeFragment(WeatherFragment.newInstance(), false);
                 }
                 break;
