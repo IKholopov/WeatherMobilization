@@ -59,6 +59,10 @@ dependencies {
     releaseCompile libraries.leakCanaryRelease
 
     testCompile libraries.junit
+    testCompile libraries.mockito
+    testCompile libraries.assertj
+    testCompile libraries.jUnitParams
+    testCompile libraries.robolectric
 
     compile libraries.gson
 }

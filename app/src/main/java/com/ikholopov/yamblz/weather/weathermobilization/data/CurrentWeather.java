@@ -19,6 +19,10 @@ public class CurrentWeather {
     String name;
     int cod;
 
+    public int getId() {
+        return id;
+    }
+
     public float getTemp() {
         return main.temp;
     }

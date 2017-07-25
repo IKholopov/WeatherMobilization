@@ -30,12 +30,12 @@ public class WeatherUpdateService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        CurrentWeatherLoader loader = new CurrentWeatherLoader(getApplicationContext());
+        Context context = getApplicationContext();
+        CurrentWeatherLoader loader = new CurrentWeatherLoader(context);
         loader.forceNetLoad();
     }
 
     public static void setServiceEnabled(Context applicationContext, boolean enabled, int interval) {
-        applicationContext = applicationContext.getApplicationContext();
         Intent intent = new Intent(applicationContext, WeatherUpdateService.class);
         PendingIntent pendingIntent = PendingIntent.getService(applicationContext,
                 SERVICE_ID, intent, 0);

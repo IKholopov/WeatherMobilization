@@ -2,7 +2,7 @@ package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.LoaderManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.Loader;
 
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
@@ -23,7 +23,8 @@ public class WeatherNetController implements LoaderNetController {
     @Override
     public void bindForecastFragment(@NonNull ForecastFragment fragment) {
         this.weatherFragment = fragment;
-        loader = new CurrentWeatherLoader(fragment.getActivityAttachedTo());
+        FragmentActivity context = fragment.getActivityAttachedTo();
+        loader = new CurrentWeatherLoader(context);
         weatherFragment.getActivityAttachedTo().getSupportLoaderManager()
                 .initLoader(CURRENT_WEATHER_LOADER_ID, null, this).forceLoad();
     }
