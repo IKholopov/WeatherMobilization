@@ -4,6 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherCache;
+import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherFileCache;
+import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
+import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelper;
+import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelperImpl;
+import com.ikholopov.yamblz.weather.weathermobilization.data.http.UriHelper;
+import com.ikholopov.yamblz.weather.weathermobilization.data.http.WeatherUriHelper;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.LoaderNetController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherNetController;
@@ -32,16 +39,31 @@ public class ApplicationModule {
 
     @Provides
     Context provideContext() {
-        return  application.getApplicationContext();
+        return application.getApplicationContext();
     }
 
     @Provides
     UpdateServiceController provideServiceController() {
-        return new WeatherServiceController();
+        return new WeatherServiceController(application.getApplicationContext());
     }
 
     @Provides
-    LoaderNetController provideLoaderNetController() {
-        return new WeatherNetController();
+    CurrentWeatherCache provideWeatherCache() {
+        return new CurrentWeatherFileCache(application.getApplicationContext());
+    }
+
+    @Provides
+    UriHelper provideUriHelper() {
+        return new WeatherUriHelper();
+    }
+
+    @Provides
+    HttpHelper provideHttpHelper() {
+        return new HttpHelperImpl();
+    }
+
+    @Provides
+    LoaderNetController provideLoaderNetController(CurrentWeatherLoader loader) {
+        return new WeatherNetController(loader);
     }
 }

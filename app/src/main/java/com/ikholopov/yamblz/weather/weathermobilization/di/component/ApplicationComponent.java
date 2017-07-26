@@ -4,10 +4,13 @@ import android.content.Context;
 
 import com.ikholopov.yamblz.weather.weathermobilization.OnBoot;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
+import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.LoaderNetController;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.SettingsFragment;
 
@@ -26,9 +29,10 @@ public interface ApplicationComponent {
     void inject(WeatherApplication application);
     void inject(SettingsFragment fragment);
     void inject(OnBoot receiver);
-    void inject(CurrentWeatherPresenterImpl presenter);
-    void inject(WeatherServiceController controller);
 
     PreferencesProvider getPreferencesProvider();
+    UpdateServiceController getServiceController();
+    LoaderNetController getWeatherNetController();
+    CurrentWeatherLoader getWeatherLoader();
     Context getContext();
 }

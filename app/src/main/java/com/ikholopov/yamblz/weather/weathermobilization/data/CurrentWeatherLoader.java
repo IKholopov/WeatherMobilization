@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.HashMap;
 
+import javax.inject.Inject;
+
 /**
  * Handles updating weather and loading it from local file
  * Created by igor on 7/16/17.
@@ -26,23 +28,17 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
 
     private boolean forceNetLoad = false;
     private CurrentWeather currentWeather;
-    private CurrentWeatherFileCache weatherCache;
+    private CurrentWeatherCache weatherCache;
     private HttpHelper httpHelper;
     private UriHelper uriHelper;
 
-    public CurrentWeatherLoader(Context context,
-                                CurrentWeatherFileCache weatherCache,
-                                HttpHelper httpHelper,
-                                UriHelper uriHelper) {
+    @Inject
+    public CurrentWeatherLoader(Context context, CurrentWeatherCache weatherCache,
+                                HttpHelper httpHelper, UriHelper uriHelper) {
         super(context);
         this.weatherCache = weatherCache;
         this.httpHelper = httpHelper;
         this.uriHelper = uriHelper;
-    }
-
-
-    public CurrentWeatherLoader(Context context) {
-        this(context, new CurrentWeatherFileCache(context), new HttpHelperImpl(), new WeatherUriHelper());
     }
 
     @Override

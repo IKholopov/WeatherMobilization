@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,6 @@ import com.ikholopov.yamblz.weather.weathermobilization.data.WeatherUtility;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.Metric;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenter;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.MainActivity;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
 
@@ -37,8 +37,8 @@ public class WeatherFragment extends Fragment implements Named, ForecastFragment
 
     private String metric;
     private CurrentWeather weather = null;
-    @Inject CurrentWeatherPresenter presenter;
 
+    @Inject CurrentWeatherPresenter presenter;
     @Inject PreferencesProvider preferences;
 
     @BindView(R.id.weather_location) TextView weatherLocation;
@@ -46,24 +46,16 @@ public class WeatherFragment extends Fragment implements Named, ForecastFragment
     @BindView(R.id.weather_icon_view) ImageView weatherIcon;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
 
-    public WeatherFragment() {
-        // Required empty constructor
-    }
-
     public static WeatherFragment newInstance() {
-        WeatherFragment fragment = new WeatherFragment();
-        return fragment;
+        return new WeatherFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //WeatherApplication.get(this.getContext()).getComponent().inject(this);
         ((MainActivity)getActivity()).getViewComponent().inject(this);
         View rootView = inflater.inflate(R.layout.fragment_weather, container, false);
         ButterKnife.bind(this, rootView);
-        presenter = new CurrentWeatherPresenterImpl();
         presenter.bind(this);
         weatherMessage.setText(weatherMessage.getText() + " " + metric);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -115,16 +107,17 @@ public class WeatherFragment extends Fragment implements Named, ForecastFragment
     }
 
     @Override
+    public Loader<CurrentWeather> initLoader(int id, Bundle args, LoaderManager.LoaderCallbacks<CurrentWeather> callbacks) {
+        return getActivity().getSupportLoaderManager()
+                .initLoader(id, args, callbacks);
+    }
+
+    @Override
     public void setWeather(@Nullable CurrentWeather weather) {
         this.weather = weather;
         if(refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }
         updateWeatherDisplay();
-    }
-
-    @Override
-    public FragmentActivity getActivityAttachedTo() {
-        return getActivity();
     }
 }

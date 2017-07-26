@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
 
 import javax.inject.Inject;
 
@@ -13,14 +14,25 @@ import javax.inject.Inject;
  */
 
 public class OnBoot extends BroadcastReceiver {
+
     @Inject
     PreferencesProvider preferences;
+    @Inject
+    UpdateServiceController serviceController;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         WeatherApplication.get(context).getComponent().inject(this);
-        WeatherUpdateService.setServiceEnabled(context,
-                preferences.getAutoupdateEnabledPreference(),
-                preferences.getUpdateInterval());
+
+        if(preferences.getAutoupdateEnabledPreference()) {
+            serviceController.enableService(preferences.getUpdateInterval());
+        } else {
+            serviceController.disableService();
+        }
+    }
+
+    public void inject(PreferencesProvider preferences, UpdateServiceController serviceController) {
+        this.preferences = preferences;
+        this.serviceController = serviceController;
     }
 }
