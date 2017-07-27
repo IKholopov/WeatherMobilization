@@ -1,12 +1,6 @@
-package com.ikholopov.yamblz.weather;
+package com.ikholopov.yamblz.weather.weathermobilization.data;
 
 import android.content.Context;
-
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherFileCache;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
-import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelper;
-import com.ikholopov.yamblz.weather.weathermobilization.data.http.UriHelper;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,12 +13,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.io.File;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyMapOf;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**

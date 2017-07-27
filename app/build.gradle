@@ -11,6 +11,7 @@ android {
         versionName versions.versionName
         resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
         resValue "string", "location", (project.findProperty("LOCATION") ?: "")
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     signingConfigs {
@@ -65,4 +66,9 @@ dependencies {
     testCompile libraries.robolectric
 
     compile libraries.gson
+
+    androidTestCompile libraries.assertj
+    androidTestCompile libraries.espresso, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }

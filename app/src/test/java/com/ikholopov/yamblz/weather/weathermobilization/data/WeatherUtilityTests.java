@@ -1,9 +1,8 @@
-package com.ikholopov.yamblz.weather;
+package com.ikholopov.yamblz.weather.weathermobilization.data;
 
 import android.content.Context;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
-import com.ikholopov.yamblz.weather.weathermobilization.data.WeatherUtility;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +10,9 @@ import org.junit.runner.RunWith;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 
-import static org.assertj.core.api.Java6Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by turist on 24.07.2017.

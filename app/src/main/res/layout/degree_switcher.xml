@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <TextView
+    <TextView android:id="@+id/unitsOption"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:text="@string/nav_drawer_metric"

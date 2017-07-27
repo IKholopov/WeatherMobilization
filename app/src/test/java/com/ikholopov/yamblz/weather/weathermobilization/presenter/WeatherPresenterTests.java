@@ -1,9 +1,6 @@
-package com.ikholopov.yamblz.weather;
+package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.LoaderNetController;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

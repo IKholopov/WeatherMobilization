@@ -16,6 +16,8 @@ import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceC
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherNetController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherServiceController;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -63,6 +65,7 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
     LoaderNetController provideLoaderNetController(CurrentWeatherLoader loader) {
         return new WeatherNetController(loader);
     }

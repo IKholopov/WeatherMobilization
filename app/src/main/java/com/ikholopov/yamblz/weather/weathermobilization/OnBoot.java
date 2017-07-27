@@ -30,9 +30,4 @@ public class OnBoot extends BroadcastReceiver {
             serviceController.disableService();
         }
     }
-
-    public void inject(PreferencesProvider preferences, UpdateServiceController serviceController) {
-        this.preferences = preferences;
-        this.serviceController = serviceController;
-    }
 }

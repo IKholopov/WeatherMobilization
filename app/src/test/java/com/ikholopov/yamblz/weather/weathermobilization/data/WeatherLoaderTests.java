@@ -1,14 +1,9 @@
-package com.ikholopov.yamblz.weather;
+package com.ikholopov.yamblz.weather.weathermobilization.data;
 
 import android.content.Context;
 
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherFileCache;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelper;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.UriHelper;
-
-import static org.assertj.core.api.Java6Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyMapOf;
 import static org.mockito.Matchers.anyString;
@@ -36,7 +32,7 @@ public class WeatherLoaderTests {
     @Mock HttpHelper httpHelper;
     @Mock UriHelper uriHelper;
 
-    static final String urlString = "http://api.openweathermap.org/query123";
+    private static final String urlString = "http://api.openweathermap.org/query123";
 
     @Before
     public void setUp() throws Exception {

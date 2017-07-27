@@ -1,8 +1,7 @@
-package com.ikholopov.yamblz.weather;
+package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherNetController;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.ForecastFragment;
 
 import org.junit.Test;
