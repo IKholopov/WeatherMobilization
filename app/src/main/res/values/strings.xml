@@ -20,6 +20,12 @@
     <string name="preference_key_metrics" translatable="false">PREF_KEY_METRICS</string>
     <string name="preference_key_autoupdate" translatable="false">PREF_KEY_AUTOUPDATE</string>
     <string name="preference_key_update_interval" translatable="false">PREF_KEY_UPDATE_INTERVAL</string>
+    <string name="preference_key_city_name" translatable="false">PREF_KEY_CITY_NAME</string>
+    <string name="preference_key_city_lat" translatable="false">PREF_KEY_CITY_LAT</string>
+    <string name="preference_key_city_lng" translatable="false">PREF_KEY_CITY_LNG</string>
+    <string name="default_city_name">Moscow</string>
+    <string name="default_city_lat" translatable="false">55.755826</string>
+    <string name="default_city_lng" translatable="false">37.6173</string>
 
     <string name="about_message">Developed by Igor Kholopov for Yandex Mobilization\n
         <a href="http://www.freepik.com/free-photos-vectors/icon">Icon vector created by Anindyanfitri - Freepik.com</a></string>

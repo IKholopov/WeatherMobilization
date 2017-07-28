@@ -7,20 +7,20 @@ package com.ikholopov.yamblz.weather.weathermobilization.data;
 public class CityInfo {
 
     private String name;
-    private double lat;
-    private double lng;
+    private float lat;
+    private float lng;
 
-    public CityInfo(String name, double lat, double lng) {
+    public CityInfo(String name, float lat, float lng) {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
     }
 
-    public double getLng() {
+    public float getLng() {
         return lng;
     }
 
-    public double getLat() {
+    public float getLat() {
         return lat;
     }
 

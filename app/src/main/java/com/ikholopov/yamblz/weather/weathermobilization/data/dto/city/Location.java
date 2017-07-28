@@ -5,6 +5,6 @@ package com.ikholopov.yamblz.weather.weathermobilization.data.dto.city;
  */
 
 public class Location {
-    public double lat;
-    public double lng;
+    public float lat;
+    public float lng;
 }
