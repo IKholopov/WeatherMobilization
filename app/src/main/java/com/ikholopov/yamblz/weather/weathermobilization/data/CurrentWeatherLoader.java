@@ -6,9 +6,8 @@ import android.util.Log;
 import com.google.gson.JsonSyntaxException;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelper;
-import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelperImpl;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.UriHelper;
-import com.ikholopov.yamblz.weather.weathermobilization.data.http.WeatherUriHelper;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,14 +27,17 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
 
     private boolean forceNetLoad = false;
     private CurrentWeather currentWeather;
+    private PreferencesProvider preferencesProvider;
     private CurrentWeatherCache weatherCache;
     private HttpHelper httpHelper;
     private UriHelper uriHelper;
 
     @Inject
-    public CurrentWeatherLoader(Context context, CurrentWeatherCache weatherCache,
-                                HttpHelper httpHelper, UriHelper uriHelper) {
+    public CurrentWeatherLoader(Context context, PreferencesProvider preferencesProvider,
+                                CurrentWeatherCache weatherCache, HttpHelper httpHelper,
+                                UriHelper uriHelper) {
         super(context);
+        this.preferencesProvider = preferencesProvider;
         this.weatherCache = weatherCache;
         this.httpHelper = httpHelper;
         this.uriHelper = uriHelper;
@@ -81,7 +83,8 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
 
     //Must not be called on MainThread
     private void fetchAndSaveCurrentWeatherJson() {
-        final String QUERY_PARAM = "q";
+        final String LAT_PARAM = "lat";
+        final String LNG_PARAM = "lon";
         final String MODE_PARAM = "mode";
         final String UNITS_PARAM = "units";
         final String APPID_PARAM = "appid";
@@ -90,7 +93,8 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
         final String units = "metric";
 
         HashMap<String, String> params = new HashMap<>();
-        params.put(QUERY_PARAM, getContext().getString(R.string.location));
+        params.put(LAT_PARAM, preferencesProvider.getCityLat()+"");
+        params.put(LNG_PARAM, preferencesProvider.getCityLng()+"");
         params.put(MODE_PARAM, mode);
         params.put(UNITS_PARAM, units);
         params.put(APPID_PARAM, getContext().getString(R.string.api_key));
