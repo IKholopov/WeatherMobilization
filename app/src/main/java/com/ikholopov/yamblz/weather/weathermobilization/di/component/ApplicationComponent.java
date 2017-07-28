@@ -6,6 +6,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.OnBoot;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationModule;
+import com.ikholopov.yamblz.weather.weathermobilization.di.module.GoogleApiModule;
 import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CurrentWeatherPresenterImpl;
@@ -24,7 +25,8 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = { ApplicationModule.class, PreferencesProviderModule.class })
+@Component(modules = { ApplicationModule.class,
+        PreferencesProviderModule.class, GoogleApiModule.class })
 public interface ApplicationComponent {
     void inject(WeatherApplication application);
     void inject(SettingsFragment fragment);
