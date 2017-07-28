@@ -26,7 +26,6 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
     private static final String TAG = "CurrentWeatherLoader";
 
     private boolean forceNetLoad = false;
-    private CurrentWeather currentWeather;
     private PreferencesProvider preferencesProvider;
     private CurrentWeatherCache weatherCache;
     private HttpHelper httpHelper;
@@ -49,14 +48,13 @@ public class CurrentWeatherLoader extends WeatherLoader<CurrentWeather> {
             fetchAndSaveCurrentWeatherJson();
         }
 
-        if(currentWeather == null || forceNetLoad) {
-            try {
-                currentWeather = weatherCache.load();
-            } catch (IOException | JsonSyntaxException e) {
-                Log.e(TAG, "Failed to read cache file");
-                e.printStackTrace();
-                currentWeather = null;
-            }
+        CurrentWeather currentWeather;
+        try {
+            currentWeather = weatherCache.load();
+        } catch (IOException | JsonSyntaxException e) {
+            Log.e(TAG, "Failed to read cache file");
+            e.printStackTrace();
+            currentWeather = null;
         }
 
         if(currentWeather == null) {

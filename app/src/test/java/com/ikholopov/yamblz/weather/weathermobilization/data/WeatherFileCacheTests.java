@@ -29,7 +29,7 @@ public class WeatherFileCacheTests {
 
     @Before
     public void setUp() throws Exception {
-        File createdFolder= folder.newFolder("cache");
+        File createdFolder = folder.newFolder("cache");
         when(context.getFilesDir()).thenReturn(createdFolder);
         when(context.getApplicationContext()).thenReturn(context);
     }
@@ -43,5 +43,17 @@ public class WeatherFileCacheTests {
         CurrentWeather loaded = currentWeatherFileCache.load();
 
         assertThat(loaded.getId()).isEqualTo(42);
+    }
+
+    @Test
+    public void loadNullAfterClearTest() throws Exception {
+        CurrentWeatherFileCache currentWeatherFileCache = new CurrentWeatherFileCache(context);
+
+        currentWeatherFileCache.save("{ \"id\" : 42 }");
+        currentWeatherFileCache.clear();
+
+        CurrentWeather loaded = currentWeatherFileCache.load();
+
+        assertThat(loaded).isNull();
     }
 }

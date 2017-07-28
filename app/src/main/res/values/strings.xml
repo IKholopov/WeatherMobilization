@@ -16,6 +16,7 @@
     <string name="background_update">Autoupdate weather</string>
     <string name="update_interval">Update interval</string>
     <string name="minutes">mins</string>
+    <string name="city">City</string>
 
     <string name="preference_key_metrics" translatable="false">PREF_KEY_METRICS</string>
     <string name="preference_key_autoupdate" translatable="false">PREF_KEY_AUTOUPDATE</string>
@@ -32,4 +33,5 @@
     <string name="format_temperature" translatable="false"><xliff:g id="temp">%1.0f</xliff:g><xliff:g id="grad">%s</xliff:g></string>
     <string name="swipe_down_to_refresh">Swipe down to refresh</string>
     <string name="no_internet_connection">No Internet connection</string>
+    <string name="error_has_been">An error has occurred</string>
 </resources>

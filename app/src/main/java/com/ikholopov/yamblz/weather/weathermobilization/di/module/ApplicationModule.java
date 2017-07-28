@@ -50,6 +50,7 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
     CurrentWeatherCache provideWeatherCache() {
         return new CurrentWeatherFileCache(application.getApplicationContext());
     }

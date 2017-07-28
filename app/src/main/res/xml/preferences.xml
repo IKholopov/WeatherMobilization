@@ -23,4 +23,10 @@
         app:msbp_measurementUnit="@string/minutes"
         android:title="@string/update_interval"
         android:inputType="number"/>
+
+    <Preference android:title="@string/city"
+        android:key="@string/preference_key_city_name">
+        <intent android:action="com.ikholopov.yamblz.weather.weathermobilization.SELECT_CITY"/>
+    </Preference>
+
 </PreferenceScreen>

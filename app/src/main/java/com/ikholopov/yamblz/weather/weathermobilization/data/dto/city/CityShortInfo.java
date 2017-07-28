@@ -7,4 +7,9 @@ package com.ikholopov.yamblz.weather.weathermobilization.data.dto.city;
 public class CityShortInfo {
     public String description;
     public String place_id;
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }
