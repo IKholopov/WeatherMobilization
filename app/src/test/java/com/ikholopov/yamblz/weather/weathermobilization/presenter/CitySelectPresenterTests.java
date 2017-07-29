@@ -65,9 +65,26 @@ public class CitySelectPresenterTests {
         when(view.selection()).thenReturn(Observable.<CityShortInfo>empty());
         when(placesService.autocomplete("city")).thenReturn(Single.just(autoComplete));
 
+        final TestScheduler testScheduler = new TestScheduler();
+        RxJavaPlugins.setComputationSchedulerHandler(new Function<Scheduler, Scheduler>() {
+            @Override
+            public Scheduler apply(@NonNull Scheduler scheduler) throws Exception {
+                return testScheduler;
+            }
+        });
+
+        RxJavaPlugins.setIoSchedulerHandler(new Function<Scheduler, Scheduler>() {
+            @Override
+            public Scheduler apply(@NonNull Scheduler scheduler) throws Exception {
+                return testScheduler;
+            }
+        });
+
         presenter.bind(view);
+        testScheduler.triggerActions();
 
         verify(view).accept(autoComplete);
+        RxJavaPlugins.reset();
     }
 
     @Test
