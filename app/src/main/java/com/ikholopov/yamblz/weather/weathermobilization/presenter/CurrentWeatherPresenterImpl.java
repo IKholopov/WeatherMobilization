@@ -1,7 +1,5 @@
 package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
-import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.ApplicationComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.fragments.ForecastFragment;
 
@@ -13,18 +11,21 @@ import javax.inject.Inject;
 
 public class CurrentWeatherPresenterImpl implements CurrentWeatherPresenter {
 
+    private PreferencesProvider preferences;
+    private UpdateServiceController serviceController;
+    private LoaderNetController weatherNetController;
 
-    @Inject PreferencesProvider preferences;
-    @Inject UpdateServiceController serviceController;
-    @Inject LoaderNetController weatherNetController;
+    @Inject
+    public CurrentWeatherPresenterImpl(PreferencesProvider preferences,
+           UpdateServiceController serviceController, LoaderNetController weatherNetController){
+        this.preferences = preferences;
+        this.serviceController = serviceController;
+        this.weatherNetController = weatherNetController;
+    }
 
     @Override
     public void bind(ForecastFragment weatherFragment) {
-        ApplicationComponent component = WeatherApplication.get(weatherFragment
-                .getActivityAttachedTo()).getComponent();
-        component.inject(this);
         weatherNetController.bindForecastFragment(weatherFragment);
-        serviceController.bindComponent(component);
         if(preferences.getAutoupdateEnabledPreference()) {
             serviceController.enableService(preferences.getUpdateInterval());
         }

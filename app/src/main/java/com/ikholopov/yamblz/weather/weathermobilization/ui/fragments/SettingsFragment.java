@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
-import com.ikholopov.yamblz.weather.weathermobilization.WeatherUpdateService;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
 import com.ikholopov.yamblz.weather.weathermobilization.ui.Named;
 
 import javax.inject.Inject;
@@ -29,12 +29,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
     @Inject
     PreferencesProvider preferences;
 
-    public SettingsFragment() {
-    }
+    @Inject
+    UpdateServiceController serviceController;
 
     public static SettingsFragment newInstance() {
-        SettingsFragment fragment = new SettingsFragment();
-        return fragment;
+        return new SettingsFragment();
     }
 
     @Override
@@ -48,7 +47,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
     }
-
 
     @Override
     public void onResume() {
@@ -71,11 +69,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if(key.equals(getString(R.string.preference_key_autoupdate)) ||
-                key.equals(getString(R.string.preference_key_update_interval))){
-            WeatherUpdateService.setServiceEnabled(getContext(),
-                    preferences.getAutoupdateEnabledPreference(),
-                    preferences.getUpdateInterval());
+        if(key.equals(getString(R.string.preference_key_autoupdate))
+        || key.equals(getString(R.string.preference_key_update_interval))){
+            if(preferences.getAutoupdateEnabledPreference()) {
+                serviceController.enableService(preferences.getUpdateInterval());
+            } else {
+                serviceController.disableService();
+            }
         }
     }
 }

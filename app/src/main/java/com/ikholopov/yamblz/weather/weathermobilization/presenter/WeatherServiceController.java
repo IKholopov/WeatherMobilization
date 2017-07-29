@@ -1,27 +1,27 @@
 package com.ikholopov.yamblz.weather.weathermobilization.presenter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherUpdateService;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.ApplicationComponent;
 
 import javax.inject.Inject;
 
-public class WeatherServiceController implements UpdateServiceController{
-    @Inject Context context;
+public class WeatherServiceController implements UpdateServiceController {
 
-    @Override
-    public void bindComponent(@NonNull ApplicationComponent component) {
-        component.inject(this);
+    private Context context;
+
+    @Inject
+    public WeatherServiceController(Context context) {
+        this.context = context;
     }
 
     @Override
     public void enableService(int updateInterval) {
-        if(context == null) {
-            throw new IllegalStateException("WeatherServiceController not binded!");
-        }
-        WeatherUpdateService.setServiceEnabled(context, true,
-                updateInterval);
+        WeatherUpdateService.setServiceEnabled(context, updateInterval);
+    }
+
+    @Override
+    public void disableService() {
+        WeatherUpdateService.setServiceDisabled(context);
     }
 }

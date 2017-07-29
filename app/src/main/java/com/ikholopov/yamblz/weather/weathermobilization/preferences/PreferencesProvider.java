@@ -13,7 +13,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.R;
 
 public class PreferencesProvider {
 
-    Context context;
+    private Context context;
 
     public PreferencesProvider(@NonNull Context context) {
         this.context = context;

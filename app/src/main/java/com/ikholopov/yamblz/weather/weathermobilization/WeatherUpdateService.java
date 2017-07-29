@@ -30,25 +30,27 @@ public class WeatherUpdateService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        CurrentWeatherLoader loader = new CurrentWeatherLoader(getApplicationContext());
+        CurrentWeatherLoader loader = WeatherApplication.get(getApplicationContext()).getComponent().getWeatherLoader();
         loader.forceNetLoad();
     }
 
-    public static void setServiceEnabled(Context applicationContext, boolean enabled, int interval) {
-        applicationContext = applicationContext.getApplicationContext();
+    public static void setServiceEnabled(Context applicationContext, int interval) {
         Intent intent = new Intent(applicationContext, WeatherUpdateService.class);
         PendingIntent pendingIntent = PendingIntent.getService(applicationContext,
                 SERVICE_ID, intent, 0);
 
-        AlarmManager manager = (AlarmManager) applicationContext.getSystemService(
-                applicationContext.ALARM_SERVICE);
-        if(enabled) {
-            manager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000,
-                    interval * 60 * 1000, pendingIntent);
-        }
-        else {
-            manager.cancel(pendingIntent);
-            pendingIntent.cancel();
-        }
+        AlarmManager manager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
+        manager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000,
+                interval * 60 * 1000, pendingIntent);
+    }
+
+    public static void setServiceDisabled(Context applicationContext) {
+        Intent intent = new Intent(applicationContext, WeatherUpdateService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(applicationContext,
+                SERVICE_ID, intent, 0);
+
+        AlarmManager manager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
+        manager.cancel(pendingIntent);
+        pendingIntent.cancel();
     }
 }

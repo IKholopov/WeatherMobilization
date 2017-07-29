@@ -19,6 +19,11 @@ ext.versions = [
         dagger                  :"2.11",
 
         junit                   :"4.12",
+        mockito                 :"1.10.19",
+        assertj                 :"2.8.0",
+        jUnitParams             :"1.1.0",
+        robolectric             :"3.3.2",
+        espresso                :"2.2.2",
 
         gson                    :"2.8.1",
 
@@ -41,6 +46,11 @@ ext.libraries = [
         daggerCompiler             :"com.google.dagger:dagger-compiler:$versions.dagger",
 
         junit                      :"junit:junit:$versions.junit",
+        mockito                    :"org.mockito:mockito-core:$versions.mockito",
+        assertj                    :"org.assertj:assertj-core:$versions.assertj",
+        jUnitParams                :"pl.pragmatists:JUnitParams:$versions.jUnitParams",
+        robolectric                :"org.robolectric:robolectric:$versions.robolectric",
+        espresso                   :"com.android.support.test.espresso:espresso-core:$versions.espresso",
 
         gson                       :"com.google.code.gson:gson:$versions.gson",
 

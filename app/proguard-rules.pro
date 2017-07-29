@@ -24,3 +24,10 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -printmapping mapping.txt
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.Clouds { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.Coordinates { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.SystemInfo { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.Weather { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.WeatherInfo { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.data.Wind { *; }
