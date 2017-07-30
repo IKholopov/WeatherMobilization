@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelper;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.UriHelper;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +29,7 @@ import static org.mockito.Mockito.when;
 public class WeatherLoaderTests {
 
     @Mock Context context;
+    @Mock PreferencesProvider preferencesProvider;
     @Mock CurrentWeatherFileCache cache;
     @Mock HttpHelper httpHelper;
     @Mock UriHelper uriHelper;
@@ -39,6 +41,8 @@ public class WeatherLoaderTests {
         when(context.getString(anyInt())).thenReturn("str");
         when(context.getApplicationContext()).thenReturn(context);
 
+        when(preferencesProvider.getCityLat()).thenReturn(32.0f);
+        when(preferencesProvider.getCityLng()).thenReturn(31.0f);
         when(httpHelper.get(urlString)).thenReturn("json");
         when(uriHelper.create(anyMapOf(String.class, String.class))).thenReturn(urlString);
     }
@@ -48,7 +52,7 @@ public class WeatherLoaderTests {
         CurrentWeather currentWeather = new CurrentWeather();
         when(cache.load()).thenReturn(null, currentWeather);
 
-        CurrentWeatherLoader loader = new CurrentWeatherLoader(context, cache, httpHelper, uriHelper);
+        CurrentWeatherLoader loader = new CurrentWeatherLoader(context, preferencesProvider, cache, httpHelper, uriHelper);
         CurrentWeather loaded = loader.loadInBackground();
 
         assertThat(loaded).isEqualTo(currentWeather);
@@ -61,7 +65,7 @@ public class WeatherLoaderTests {
         CurrentWeather currentWeather = new CurrentWeather();
         when(cache.load()).thenReturn(currentWeather);
 
-        CurrentWeatherLoader loader = new CurrentWeatherLoader(context, cache, httpHelper, uriHelper);
+        CurrentWeatherLoader loader = new CurrentWeatherLoader(context, preferencesProvider, cache, httpHelper, uriHelper);
         CurrentWeather loaded = loader.loadInBackground();
 
         assertThat(loaded).isEqualTo(currentWeather);

@@ -10,6 +10,8 @@
     <string name="nav_drawer_about">О приложении</string>
     <string name="nav_drawer_metric">Еденицы измерения</string>
 
+    <string name="default_city_name">Москва</string>
+
     <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация\n
         <a href="http://www.freepik.com/free-photos-vectors/icon">Иконки сделаны Anindyanfitri - Freepik.com</a></string>
     <string name="app_name">Погода</string>
@@ -18,4 +20,6 @@
     <string name="swipe_down_to_refresh">Потяните вниз, чтобы попробывать обновить</string>
     <string name="update_interval">Интервал обновления</string>
     <string name="minutes">мин</string>
+    <string name="city">Город</string>
+    <string name="error_has_been">Произошла ошибка</string>
 </resources>

@@ -51,6 +51,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Named,
     @Override
     public void onResume() {
         super.onResume();
+        getPreferenceScreen().findPreference(getString(R.string.preference_key_city_name))
+                .setSummary(preferences.getCityName());
+
         PreferenceManager preferenceManager = getPreferenceManager();
         preferenceManager.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }

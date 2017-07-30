@@ -79,6 +79,7 @@ public class WeatherFragment extends Fragment implements Named, ForecastFragment
     @Override
     public void onResume() {
         super.onResume();
+
         updateWeatherDisplay();
     }
 
@@ -115,6 +116,10 @@ public class WeatherFragment extends Fragment implements Named, ForecastFragment
     @Override
     public void setWeather(@Nullable CurrentWeather weather) {
         this.weather = weather;
+        if(weather != null) {
+            this.weather.setLocationName(preferences.getCityName());
+        }
+
         if(refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }

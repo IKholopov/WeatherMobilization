@@ -9,4 +9,5 @@ import java.io.IOException;
 public interface CurrentWeatherCache {
     void save(String jsonString) throws IOException;
     CurrentWeather load() throws IOException;
+    void clear() throws IOException;
 }

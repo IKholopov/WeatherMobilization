@@ -10,6 +10,7 @@ android {
         versionCode versions.version
         versionName versions.versionName
         resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
+        resValue "string", "google_api_key", (project.findProperty("GOOGLE_API_KEY") ?: "")
         resValue "string", "location", (project.findProperty("LOCATION") ?: "")
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
@@ -64,6 +65,12 @@ dependencies {
     testCompile libraries.robolectric
 
     compile libraries.gson
+    compile libraries.rxjava
+    compile libraries.rxandroid
+    compile libraries.rxbinding
+    compile libraries.retrofit
+    compile libraries.converterGson
+    compile libraries.adapterRxjava2
 
     androidTestCompile libraries.assertj
     androidTestCompile libraries.espresso, {
