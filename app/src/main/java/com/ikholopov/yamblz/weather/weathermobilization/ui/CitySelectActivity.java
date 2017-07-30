@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -37,6 +40,7 @@ import io.reactivex.functions.Function;
 
 public class CitySelectActivity extends AppCompatActivity implements CitySelectView {
 
+    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.city_edit) EditText cityEdit;
     @BindView(R.id.cities_list) ListView citiesList;
 
@@ -62,10 +66,25 @@ public class CitySelectActivity extends AppCompatActivity implements CitySelectV
         setContentView(R.layout.activity_city);
         ButterKnife.bind(this);
 
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         citiesList.setAdapter(adapter);
 
         presenter.bind(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
