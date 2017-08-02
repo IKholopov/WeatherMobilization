@@ -1,11 +1,9 @@
 package com.ikholopov.yamblz.weather.weathermobilization.ui;
 
-import android.content.Loader;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -16,13 +14,11 @@ import android.widget.ListView;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CityAutoComplete;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
-import com.ikholopov.yamblz.weather.weathermobilization.data.WeatherLoader;
 import com.ikholopov.yamblz.weather.weathermobilization.data.dto.city.CityShortInfo;
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.CitySelectComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerCitySelectComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.CitySelectPresenter;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.views.CitySelectView;
 import com.jakewharton.rxbinding2.widget.RxAdapterView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 

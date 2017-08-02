@@ -39,10 +39,6 @@ public class CurrentWeather {
         return name;
     }
 
-    public void setLocationName(String name) {
-        this.name = name;
-    }
-
     public int getWeatherId() {
         return weather[0].id;
     }

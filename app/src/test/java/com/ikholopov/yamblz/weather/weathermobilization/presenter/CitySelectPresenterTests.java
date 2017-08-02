@@ -6,9 +6,8 @@ import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherCache
 import com.ikholopov.yamblz.weather.weathermobilization.data.PlacesService;
 import com.ikholopov.yamblz.weather.weathermobilization.data.dto.city.CityShortInfo;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.CitySelectView;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.views.CitySelectView;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +27,6 @@ import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.schedulers.TestScheduler;
 
-import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

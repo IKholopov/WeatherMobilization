@@ -3,9 +3,12 @@ package com.ikholopov.yamblz.weather.weathermobilization.data;
 import android.content.Context;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
+import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -19,26 +22,30 @@ import static org.mockito.Mockito.when;
  */
 
 @RunWith(JUnitParamsRunner.class)
-public class WeatherUtilityTests {
+public class WeatherMapperTests {
 
     @Test
     public void formatTemperatureForCelsius() throws Exception {
         Context context = mock(Context.class);
+        WeatherMapper mapper = new WeatherMapper(context, null);
+
         when(context.getString(R.string.celsius)).thenReturn("c");
         when(context.getString(R.string.format_temperature, 5.0, "c")).thenReturn("cel");
 
-        String cel = WeatherUtility.formatTemperature(context, 5.0, true);
+        String cel = mapper.mapTemperature(5.0, true);
 
         assertThat(cel).isEqualTo("cel");
     }
 
     @Test
-    public void formatTemperatureForFarhenheit() throws Exception {
+    public void formatTemperatureForFahrenheit() throws Exception {
         Context context = mock(Context.class);
+        WeatherMapper mapper = new WeatherMapper(context, null);
+
         when(context.getString(R.string.farhenheit)).thenReturn("f");
         when(context.getString(R.string.format_temperature, 41.0, "f")).thenReturn("far");
 
-        String far = WeatherUtility.formatTemperature(context, 5.0, false);
+        String far = mapper.mapTemperature(5.0, false);
 
         assertThat(far).isEqualTo("far");
     }
@@ -63,6 +70,8 @@ public class WeatherUtilityTests {
     @Test
     @Parameters(method = "imageForWeather")
     public void getImageIdForWeatherId(int weather, int image) throws Exception {
-        assertThat(WeatherUtility.getImageIdForWeatherId(weather)).isEqualTo(image);
+        WeatherMapper mapper = new WeatherMapper(null, null);
+
+        assertThat(mapper.mapImageId(weather)).isEqualTo(image);
     }
 }

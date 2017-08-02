@@ -8,21 +8,20 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherNetController;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by igor on 7/16/17.
  */
 
 public class WeatherUpdateService extends IntentService {
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
 
     private static final String SERVICE_NAME = "WEATHER_UPDATE_SERVICE";
     private static final int SERVICE_ID = 0;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     public WeatherUpdateService() {
         super(SERVICE_NAME);
@@ -30,8 +29,15 @@ public class WeatherUpdateService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        CurrentWeatherLoader loader = WeatherApplication.get(getApplicationContext()).getComponent().getWeatherLoader();
-        loader.forceNetLoad();
+        WeatherNetController loader = WeatherApplication.get(getApplicationContext())
+                .getComponent().getWeatherNetController();
+        disposables.add(loader.forceNetLoad());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        disposables.clear();
     }
 
     public static void setServiceEnabled(Context applicationContext, int interval) {

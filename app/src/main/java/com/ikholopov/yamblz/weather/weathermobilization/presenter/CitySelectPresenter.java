@@ -8,7 +8,7 @@ import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherCache
 import com.ikholopov.yamblz.weather.weathermobilization.data.PlacesService;
 import com.ikholopov.yamblz.weather.weathermobilization.data.dto.city.CityShortInfo;
 import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
-import com.ikholopov.yamblz.weather.weathermobilization.ui.CitySelectView;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.views.CitySelectView;
 
 import java.util.concurrent.TimeUnit;
 

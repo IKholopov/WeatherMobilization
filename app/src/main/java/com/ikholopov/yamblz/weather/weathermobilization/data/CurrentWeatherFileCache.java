@@ -1,6 +1,7 @@
 package com.ikholopov.yamblz.weather.weathermobilization.data;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -13,7 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by turist on 25.07.2017.
@@ -26,33 +28,16 @@ public class CurrentWeatherFileCache implements CurrentWeatherCache {
 
     private Context context;
     private CurrentWeather currentWeather;
+    private Gson gson;
 
     public CurrentWeatherFileCache(Context context) {
         this.context = context;
+        this.gson = new GsonBuilder().create();
     }
 
+    @Nullable
     @Override
-    public void save(String jsonString) throws IOException {
-        OutputStream file = null;
-        try {
-            file = new FileOutputStream(new File(context.getFilesDir(), CACHED_FILE_NAME));
-            file.write(jsonString.getBytes());
-        }
-        catch (FileNotFoundException e) {
-            Log.e(TAG, "Failed to create cache file");
-        }
-        catch (IOException e) {
-            Log.e(TAG, "Failed to write to cache file");
-        }
-        finally {
-            if(file != null) {
-                file.close();
-            }
-        }
-    }
-
-    @Override
-    public CurrentWeather load() throws IOException {
+    public CurrentWeather load() {
         if(currentWeather == null) {
             InputStream file = null;
             try {
@@ -64,12 +49,17 @@ public class CurrentWeatherFileCache implements CurrentWeatherCache {
                 }
 
                 String jsonString = new String(buffer, "UTF-8");
-                Gson gson = new GsonBuilder().create();
                 currentWeather = gson.fromJson(jsonString, CurrentWeather.class);
             } catch (FileNotFoundException ignored) {
+            } catch (IOException e) {
+                e.printStackTrace();
             } finally {
                 if(file != null) {
-                    file.close();
+                    try {
+                        file.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -83,6 +73,29 @@ public class CurrentWeatherFileCache implements CurrentWeatherCache {
         File file = new File(context.getFilesDir(), CACHED_FILE_NAME);
         if(file.exists()) {
             file.delete();
+        }
+    }
+
+    @Override
+    public void accept(@NonNull CurrentWeather weather) throws Exception {
+        currentWeather = weather;
+
+        OutputStream file = null;
+        try {
+            file = new FileOutputStream(new File(context.getFilesDir(), CACHED_FILE_NAME));
+            String json = gson.toJson(weather);
+            file.write(json.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            Log.e(TAG, "Failed to create cache file");
+        }
+        catch (IOException e) {
+            Log.e(TAG, "Failed to write to cache file");
+        }
+        finally {
+            if(file != null) {
+                file.close();
+            }
         }
     }
 }

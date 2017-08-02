@@ -1,17 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
     defaultConfig {
         applicationId "com.ikholopov.yamblz.weather.weathermobilization"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-        versionCode versions.version
-        versionName versions.versionName
-        resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 2
+        versionName "2.0.0"
+
+        resValue "string", "openweathermap_api_key", (project.findProperty("OPENWEATHERMAP_API_KEY") ?: "")
         resValue "string", "google_api_key", (project.findProperty("GOOGLE_API_KEY") ?: "")
-        resValue "string", "location", (project.findProperty("LOCATION") ?: "")
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
@@ -39,41 +40,69 @@ android {
     }
 }
 
+ext.versions = [
+        supportLibs : "25.3.1",
+        supportFix : "25.3.1.1",
+        constraintLayout : "1.0.2",
+
+        seekbar : "2.3.0",
+
+        butterKnife : "8.7.0",
+
+        dagger : "2.11",
+
+        gson : "2.8.1",
+        rxjava : "2.1.1",
+        rxandroid : "2.0.1",
+        rxbinding : "2.0.0",
+        retrofit : "2.3.0",
+
+        junit : "4.12",
+        mockito : "1.10.19",
+        assertj : "2.8.0",
+        jUnitParams : "1.1.0",
+        robolectric : "3.3.2",
+        espresso : "2.2.2",
+
+        leakCanary : "1.5.1"
+]
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile libraries.supportAppCompat
-    compile libraries.supportDesign
-    compile libraries.supportPreference
-    compile libraries.supportConstraintLayout
-    compile libraries.support
 
-    compile libraries.seekbar
+    compile "com.android.support:appcompat-v7:$versions.supportLibs"
+    compile "com.android.support:design:$versions.supportLibs"
+    compile "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+    compile "com.android.support:support-v4:$versions.supportLibs"
 
-    compile libraries.butterKnife
-    annotationProcessor libraries.butterKnifeCompiler
+    compile "com.takisoft.fix:preference-v7:$versions.supportFix"
+    compile "com.pavelsikun:material-seekbar-preference:$versions.seekbar"
 
-    compile libraries.dagger
-    annotationProcessor libraries.daggerCompiler
+    compile "com.jakewharton:butterknife:$versions.butterKnife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
 
-    debugCompile libraries.leakCanaryDebug
-    releaseCompile libraries.leakCanaryRelease
+    compile "com.google.dagger:dagger:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    testCompile libraries.junit
-    testCompile libraries.mockito
-    testCompile libraries.assertj
-    testCompile libraries.jUnitParams
-    testCompile libraries.robolectric
+    compile "com.google.code.gson:gson:$versions.gson"
+    compile "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    compile "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+    compile "com.jakewharton.rxbinding2:rxbinding:$versions.rxbinding"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:$versions.rxbinding"
+    compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 
-    compile libraries.gson
-    compile libraries.rxjava
-    compile libraries.rxandroid
-    compile libraries.rxbinding
-    compile libraries.retrofit
-    compile libraries.converterGson
-    compile libraries.adapterRxjava2
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
 
-    androidTestCompile libraries.assertj
-    androidTestCompile libraries.espresso, {
+    testCompile "junit:junit:$versions.junit"
+    testCompile "org.mockito:mockito-core:$versions.mockito"
+    testCompile "org.assertj:assertj-core:$versions.assertj"
+    testCompile "pl.pragmatists:JUnitParams:$versions.jUnitParams"
+    testCompile "org.robolectric:robolectric:$versions.robolectric"
+
+    androidTestCompile "org.assertj:assertj-core:$versions.assertj"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 }

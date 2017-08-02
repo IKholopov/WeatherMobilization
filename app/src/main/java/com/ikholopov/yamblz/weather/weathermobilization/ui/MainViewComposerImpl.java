@@ -45,7 +45,7 @@ public class MainViewComposerImpl implements MainViewComposer {
         }
         activity.setSupportActionBar(toolbar);
         if(activity.findViewById(R.id.content_frame) != null && initial) {
-            WeatherFragment fragment = WeatherFragment.newInstance();
+            WeatherFragment fragment = new WeatherFragment();
             fragment.setArguments(activity.getIntent().getExtras());
             activity.getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.slide_in, R.anim.slide_out,
@@ -76,7 +76,7 @@ public class MainViewComposerImpl implements MainViewComposer {
         switch(navId) {
             case R.id.nav_weather:
                 if(shouldReplaceFragment(WeatherFragment.FRAGMENT_NAME_ID)) {
-                    placeFragment(WeatherFragment.newInstance(), false);
+                    placeFragment(new WeatherFragment(), false);
                 }
                 break;
             case R.id.nav_settings:

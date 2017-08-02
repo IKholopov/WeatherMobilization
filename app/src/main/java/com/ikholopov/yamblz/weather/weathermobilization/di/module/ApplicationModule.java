@@ -6,14 +6,12 @@ import android.support.annotation.NonNull;
 
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherCache;
 import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherFileCache;
-import com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeatherLoader;
+import com.ikholopov.yamblz.weather.weathermobilization.data.LanguageProvider;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelper;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.HttpHelperImpl;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.UriHelper;
 import com.ikholopov.yamblz.weather.weathermobilization.data.http.WeatherUriHelper;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.LoaderNetController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherNetController;
 import com.ikholopov.yamblz.weather.weathermobilization.presenter.WeatherServiceController;
 
 import javax.inject.Singleton;
@@ -66,8 +64,7 @@ public class ApplicationModule {
     }
 
     @Provides
-    @Singleton
-    LoaderNetController provideLoaderNetController(CurrentWeatherLoader loader) {
-        return new WeatherNetController(loader);
+    LanguageProvider provideLanguageProvider() {
+        return new LanguageProvider();
     }
 }

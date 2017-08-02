@@ -25,7 +25,6 @@
 #-renamesourcefileattribute SourceFile
 -printmapping mapping.txt
 -keep class com.ikholopov.yamblz.weather.weathermobilization.data.dto.** { *; }
--keep class com.ikholopov.yamblz.weather.weathermobilization.data.CurrentWeather { *; }
 -keep class com.ikholopov.yamblz.weather.weathermobilization.data.CityInfo { *; }
 -keep class com.ikholopov.yamblz.weather.weathermobilization.data.CityAutoComplete { *; }
 

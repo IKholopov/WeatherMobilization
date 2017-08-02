@@ -1,4 +1,4 @@
-package com.ikholopov.yamblz.weather.weathermobilization.ui;
+package com.ikholopov.yamblz.weather.weathermobilization.ui.views;
 
 import com.ikholopov.yamblz.weather.weathermobilization.data.CityAutoComplete;
 import com.ikholopov.yamblz.weather.weathermobilization.data.dto.city.CityShortInfo;
