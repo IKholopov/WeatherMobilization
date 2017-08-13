@@ -1,36 +1,42 @@
 package com.ikholopov.yamblz.weather.weathermobilization.ui;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.WeatherApplication;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.ViewComponent;
-import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerViewComponent;
-import com.ikholopov.yamblz.weather.weathermobilization.di.module.MainComposerModule;
+import com.ikholopov.yamblz.weather.weathermobilization.di.component.ActivityComponent;
+import com.ikholopov.yamblz.weather.weathermobilization.di.module.ActivityModule;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.MainPresenter;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.TwoPaneRouter;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.views.MainView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.annotations.Nullable;
 
-public class MainActivity extends NavigatableActivity {
+public class MainActivity extends AppCompatActivity
+        implements MainView, TwoPaneRouter.RightPanelReplaced {
 
-    @Inject
-    MainViewComposer composer;
+    @Inject ActivityComponent viewComponent;
+    @Inject MainPresenter presenter;
 
-    private ViewComponent viewComponent;
+    @Nullable
+    @BindView(R.id.right_container) FrameLayout detailsContainer;
 
-    @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @Nullable
+    @BindView(R.id.select_city_hint) TextView selectCityHint;
 
-    public ViewComponent getViewComponent() {
+    public ActivityComponent getViewComponent() {
         if(viewComponent == null) {
-            viewComponent = DaggerViewComponent.builder()
-                    .applicationComponent(WeatherApplication.get(this).getComponent())
-                    .mainComposerModule(new MainComposerModule())
+            viewComponent = WeatherApplication.get(this).getComponent()
+                    .activityComponentBuilder()
+                    .activityModule(new ActivityModule(this))
                     .build();
         }
         return viewComponent;
@@ -38,30 +44,29 @@ public class MainActivity extends NavigatableActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
-        getViewComponent().inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        composer.bind(this);
-        composer.setUpView(savedInstanceState == null);
+
+        getViewComponent().inject(this);
+        presenter.bind(this, savedInstanceState != null);
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
-            composer.onBackPressed();
-        }
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.unbind();
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        composer.handleNavigation(id);
-        return true;
+    public boolean inTwoPaneMode() {
+        return detailsContainer != null;
+    }
+
+    @Override
+    public void onReplaced() {
+        if(selectCityHint != null) {
+            selectCityHint.setVisibility(View.INVISIBLE);
+        }
     }
 }

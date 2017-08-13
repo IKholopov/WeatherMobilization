@@ -1,17 +1,19 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
     defaultConfig {
         applicationId "com.ikholopov.yamblz.weather.weathermobilization"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-        versionCode versions.version
-        versionName versions.versionName
-        resValue "string", "api_key", (project.findProperty("API_KEY") ?: "")
-        resValue "string", "google_api_key", (project.findProperty("GOOGLE_API_KEY") ?: "")
-        resValue "string", "location", (project.findProperty("LOCATION") ?: "")
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 2
+        versionName "2.0.0"
+
+        buildConfigField "String", "GOOGLE_API_KEY", (project.findProperty("GOOGLE_API_KEY") ?: "")
+        buildConfigField "String", "OPENWEATHERMAP_API_KEY", (project.findProperty("OPENWEATHERMAP_API_KEY") ?: "")
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
@@ -37,43 +39,82 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
+
+ext.versions = [
+        supportLibs : "25.3.1",
+        constraintLayout : "1.0.2",
+        room : "1.0.0-alpha5",
+
+        threetenabp : "1.0.5",
+        butterKnife : "8.7.0",
+
+        toggleButtonGroup : "1.0.2",
+        dagger : "2.11",
+
+        gson : "2.8.1",
+        rxjava : "2.1.1",
+        rxandroid : "2.0.1",
+        rxbinding : "2.0.0",
+        retrofit : "2.3.0",
+
+        junit : "4.12",
+        mockito : "1.10.19",
+        assertj : "2.8.0",
+        jUnitParams : "1.1.0",
+        robolectric : "3.3.2",
+        espresso : "2.2.2",
+
+        leakCanary : "1.5.1"
+]
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile libraries.supportAppCompat
-    compile libraries.supportDesign
-    compile libraries.supportPreference
-    compile libraries.supportConstraintLayout
-    compile libraries.support
 
-    compile libraries.seekbar
+    compile "com.android.support:appcompat-v7:$versions.supportLibs"
+    compile "com.android.support:design:$versions.supportLibs"
+    compile "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+    compile "com.android.support:support-v4:$versions.supportLibs"
+    compile "com.android.support:cardview-v7:$versions.supportLibs"
 
-    compile libraries.butterKnife
-    annotationProcessor libraries.butterKnifeCompiler
+    compile "android.arch.persistence.room:runtime:$versions.room"
+    compile "android.arch.persistence.room:rxjava2:$versions.room"
+    annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
 
-    compile libraries.dagger
-    annotationProcessor libraries.daggerCompiler
+    compile "com.nex3z:toggle-button-group:$versions.toggleButtonGroup"
 
-    debugCompile libraries.leakCanaryDebug
-    releaseCompile libraries.leakCanaryRelease
+    compile "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
+    compile "com.jakewharton:butterknife:$versions.butterKnife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
 
-    testCompile libraries.junit
-    testCompile libraries.mockito
-    testCompile libraries.assertj
-    testCompile libraries.jUnitParams
-    testCompile libraries.robolectric
+    compile "com.google.dagger:dagger:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    compile libraries.gson
-    compile libraries.rxjava
-    compile libraries.rxandroid
-    compile libraries.rxbinding
-    compile libraries.retrofit
-    compile libraries.converterGson
-    compile libraries.adapterRxjava2
+    compile "com.google.code.gson:gson:$versions.gson"
+    compile "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    compile "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+    compile "com.jakewharton.rxbinding2:rxbinding:$versions.rxbinding"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:$versions.rxbinding"
+    compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 
-    androidTestCompile libraries.assertj
-    androidTestCompile libraries.espresso, {
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary"
+
+    testCompile "junit:junit:$versions.junit"
+    testCompile "org.mockito:mockito-core:$versions.mockito"
+    testCompile "org.assertj:assertj-core:$versions.assertj"
+    testCompile "pl.pragmatists:JUnitParams:$versions.jUnitParams"
+    testCompile "org.robolectric:robolectric:$versions.robolectric"
+
+    androidTestCompile "org.assertj:assertj-core:$versions.assertj"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espresso", {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 }

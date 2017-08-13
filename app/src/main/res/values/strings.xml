@@ -1,37 +1,46 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Weather Mobilization</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="weather_fragment_name">Showing weather in </string>
 
-    <string name="nav_drawer_weather">Weather</string>
-    <string name="nav_drawer_settings">Settings</string>
-    <string name="nav_drawer_about">About</string>
-    <string name="nav_drawer_metric">Units</string>
-
-    <string name="farhenheit" translatable="false">°F</string>
+    <string name="fahrenheit" translatable="false">°F</string>
     <string name="celsius" translatable="false">°C</string>
-    <string name="background_update">Autoupdate weather</string>
-    <string name="update_interval">Update interval</string>
-    <string name="minutes">mins</string>
-    <string name="city">City</string>
 
-    <string name="preference_key_metrics" translatable="false">PREF_KEY_METRICS</string>
-    <string name="preference_key_autoupdate" translatable="false">PREF_KEY_AUTOUPDATE</string>
-    <string name="preference_key_update_interval" translatable="false">PREF_KEY_UPDATE_INTERVAL</string>
-    <string name="preference_key_city_name" translatable="false">PREF_KEY_CITY_NAME</string>
-    <string name="preference_key_city_lat" translatable="false">PREF_KEY_CITY_LAT</string>
-    <string name="preference_key_city_lng" translatable="false">PREF_KEY_CITY_LNG</string>
-    <string name="default_city_name">Moscow</string>
-    <string name="default_city_lat" translatable="false">55.755826</string>
-    <string name="default_city_lng" translatable="false">37.6173</string>
+    <string name="speed_format">%.1f m/s</string>
+    <string name="pressure_format">%.1f hPa</string>
+
+    <string name="temperature_units_option">Temperature units</string>
+    <string name="update_interval">Update interval</string>
+
+    <string-array name="update_intervals">
+        <item>Disable</item>
+        <item>15 mins</item>
+        <item>30 mins</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+    </string-array>
+
+    <string name="city">City</string>
 
     <string name="about_message">Developed by Igor Kholopov for Yandex Mobilization\n
         <a href="http://www.freepik.com/free-photos-vectors/icon">Icon vector created by Anindyanfitri - Freepik.com</a></string>
     <string name="format_temperature" translatable="false"><xliff:g id="temp">%1.0f</xliff:g><xliff:g id="grad">%s</xliff:g></string>
+
     <string name="swipe_down_to_refresh">Swipe down to refresh</string>
-    <string name="no_internet_connection">No Internet connection</string>
+    <string name="no_internet_swipe_down_to_refresh">No Internet connection\nSwipe down to refresh</string>
     <string name="error_has_been">An error has occurred</string>
+    <string name="click_city_to_show_weather">Choose a city to see the details</string>
+    <string name="search_hint">City search</string>
+    <string name="settings">Settings</string>
+    <string name="delete_city">Delete city from Favorites?</string>
+    <string name="save_city">Save city to Favorites?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="saved_cities">Saved cities</string>
+    <string name="search_result">Search results</string>
+    <string name="updated">Updated</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="forecast">Forecast</string>
+
 </resources>

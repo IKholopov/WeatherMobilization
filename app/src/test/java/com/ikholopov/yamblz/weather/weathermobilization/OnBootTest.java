@@ -1,14 +1,15 @@
 package com.ikholopov.yamblz.weather.weathermobilization;
 
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.ApplicationComponent;
-import com.ikholopov.yamblz.weather.weathermobilization.preferences.PreferencesProvider;
-import com.ikholopov.yamblz.weather.weathermobilization.presenter.UpdateServiceController;
+import com.ikholopov.yamblz.weather.weathermobilization.model.preferences.PreferencesProvider;
+import com.ikholopov.yamblz.weather.weathermobilization.model.services.UpdateServiceController;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.threeten.bp.Duration;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -37,17 +38,17 @@ public class OnBootTest {
 
     @Test
     public void startUpdatingOnBootTest() throws Exception {
-        when(preferences.getAutoupdateEnabledPreference()).thenReturn(true);
-        when(preferences.getUpdateInterval()).thenReturn(5);
+        Duration duration = Duration.ofSeconds(5);
+        when(preferences.getAutoUpdateInterval()).thenReturn(duration);
 
         onBoot.onReceive(application, null);
 
-        verify(serviceController).enableService(5);
+        verify(serviceController).enableService(duration);
     }
 
     @Test
     public void stopUpdatingOnBootTest() throws Exception {
-        when(preferences.getAutoupdateEnabledPreference()).thenReturn(false);
+        when(preferences.getAutoUpdateInterval()).thenReturn(Duration.ZERO);
 
         onBoot.onReceive(application, null);
 

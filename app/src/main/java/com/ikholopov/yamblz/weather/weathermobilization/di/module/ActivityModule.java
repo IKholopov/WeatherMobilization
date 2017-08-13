@@ -1,6 +1,9 @@
 package com.ikholopov.yamblz.weather.weathermobilization.di.module;
 
-import com.ikholopov.yamblz.weather.weathermobilization.ui.NavigatableActivity;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.MainActivityRouter;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.MainRouter;
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.TwoPaneRouter;
+import com.ikholopov.yamblz.weather.weathermobilization.ui.MainActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,14 +15,24 @@ import dagger.Provides;
 
 @Module
 public class ActivityModule {
-    private NavigatableActivity activity;
 
-    public ActivityModule(NavigatableActivity activity) {
+    private final MainActivity activity;
+
+    public ActivityModule(MainActivity activity) {
         this.activity = activity;
     }
 
     @Provides
-    NavigatableActivity provideActivity() {
+    MainActivity provideActivity() {
         return activity;
+    }
+
+    @Provides
+    MainRouter provideFragmentManager() {
+        if(activity.inTwoPaneMode()) {
+            return new TwoPaneRouter(activity.getSupportFragmentManager(), activity);
+        } else {
+            return new MainActivityRouter(activity.getSupportFragmentManager());
+        }
     }
 }

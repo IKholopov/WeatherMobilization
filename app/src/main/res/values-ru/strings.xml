@@ -1,25 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigation_drawer_open">Открыть панель навигации</string>
-    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+    <string name="app_name">Погода</string>
 
     <string name="weather_fragment_name">"Погода в "</string>
 
-    <string name="nav_drawer_weather">Погода</string>
-    <string name="nav_drawer_settings">Настройки</string>
-    <string name="nav_drawer_about">О приложении</string>
-    <string name="nav_drawer_metric">Еденицы измерения</string>
+    <string name="speed_format">%.1f м/с</string>
+    <string name="pressure_format">%.1f гПа</string>
 
-    <string name="default_city_name">Москва</string>
+    <string name="temperature_units_option">Формат температуры</string>
+    <string name="update_interval">Интервал обновления</string>
+
+    <string-array name="update_intervals">
+        <item>Выключить</item>
+        <item>15 мин.</item>
+        <item>30 мин.</item>
+        <item>1 час</item>
+        <item>2 часа</item>
+    </string-array>
+
+    <string name="city">Город</string>
 
     <string name="about_message">Разработано Игорем Холоповым в рамках проекта Яндекс Мобилизация\n
         <a href="http://www.freepik.com/free-photos-vectors/icon">Иконки сделаны Anindyanfitri - Freepik.com</a></string>
-    <string name="app_name">Погода</string>
-    <string name="background_update">Обновления погоды</string>
-    <string name="no_internet_connection">Нет соединения</string>
-    <string name="swipe_down_to_refresh">Потяните вниз, чтобы попробывать обновить</string>
-    <string name="update_interval">Интервал обновления</string>
-    <string name="minutes">мин</string>
-    <string name="city">Город</string>
+
+    <string name="swipe_down_to_refresh">Потяните вниз, чтобы обновить</string>
+    <string name="no_internet_swipe_down_to_refresh">Нет соединения\nПотяните вниз, чтобы попробывать ещё</string>
     <string name="error_has_been">Произошла ошибка</string>
+    <string name="click_city_to_show_weather">Выбери город, чтобы увидеть подробности</string>
+    <string name="search_hint">Поиск города</string>
+    <string name="settings">Настройки</string>
+    <string name="delete_city">Удалить город из Избранного?</string>
+    <string name="save_city">Сохранить город в Избранном?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="saved_cities">Сохранённые города</string>
+    <string name="search_result">Результаты поиска</string>
+    <string name="updated">Обновлено</string>
+    <string name="wind">Ветер</string>
+    <string name="pressure">Давление</string>
+    <string name="forecast">Прогноз</string>
+
 </resources>

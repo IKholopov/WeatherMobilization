@@ -1,0 +1,8 @@
+<resources>
+    <item name="ic_menu_black_24dp" type="drawable">@drawable/ic_menu_black_24px</item>
+    <item name="ic_search_black_24dp" type="drawable">@drawable/ic_search_black_24px</item>
+    <item name="ic_settings_black_24dp" type="drawable">@drawable/ic_settings_black_24px</item>
+    <item name="ic_navigate_next_black_24dp" type="drawable">@drawable/ic_navigate_next_black_24px</item>
+    <item name="ic_arrow_back_black_24dp" type="drawable">@drawable/ic_arrow_back_black_24px</item>
+    <item name="ic_clear_black_24dp" type="drawable">@drawable/ic_clear_black_24px</item>
+</resources>

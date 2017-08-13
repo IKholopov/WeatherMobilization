@@ -5,8 +5,8 @@ import android.content.Context;
 
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.ApplicationComponent;
 import com.ikholopov.yamblz.weather.weathermobilization.di.component.DaggerApplicationComponent;
-import com.ikholopov.yamblz.weather.weathermobilization.di.module.ApplicationModule;
-import com.ikholopov.yamblz.weather.weathermobilization.di.module.PreferencesProviderModule;
+import com.ikholopov.yamblz.weather.weathermobilization.di.module.application.ApplicationModule;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -15,6 +15,7 @@ import com.squareup.leakcanary.LeakCanary;
  */
 
 public class WeatherApplication extends Application {
+
     protected ApplicationComponent applicationComponent;
 
     public static WeatherApplication get(Context context) {
@@ -24,15 +25,18 @@ public class WeatherApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
             return;
         }
+
         LeakCanary.install(this);
+        AndroidThreeTen.init(this);
+
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
-                .preferencesProviderModule(new PreferencesProviderModule(getApplicationContext()))
                 .build();
         applicationComponent.inject(this);
     }
