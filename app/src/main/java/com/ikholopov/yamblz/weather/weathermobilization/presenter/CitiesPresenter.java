@@ -57,7 +57,6 @@ public class CitiesPresenter extends RxPresenter {
 
         save(searches
                 .map(s -> s.length() > 0)
-                .distinctUntilChanged()
                 .observeOn(schedulers.main())
                 .subscribe(view::showClearButton));
 

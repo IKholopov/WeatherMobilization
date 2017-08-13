@@ -18,7 +18,7 @@ public interface CitiesView extends Consumer<List<CityWeather>> {
 
     Observable<Object> searchClears();
     Observable<Object> settingsRequests();
-    InitialValueObservable<CharSequence> citiesSearches();
+    Observable<CharSequence> citiesSearches();
     Observable<CityWeather> citiesSelections();
     Observable<CityWeather> citiesOptionSelections();
 

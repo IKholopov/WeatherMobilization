@@ -85,7 +85,7 @@ public class CitiesFragment extends KnifeFragment implements CitiesView {
     }
 
     @Override
-    public InitialValueObservable<CharSequence> citiesSearches() {
+    public Observable<CharSequence> citiesSearches() {
         return RxTextView.textChanges(searchEdit);
     }
 

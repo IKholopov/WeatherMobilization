@@ -30,10 +30,6 @@ public class WeatherRepository {
         return forecastDao.forCity(city.id);
     }
 
-    public List<Forecast> blockingForCity(City city) {
-        return forecastDao.blockingForCity(city.id);
-    }
-
     public void save(List<Forecast> forecasts) {
         forecastDao.insert(forecasts);
     }
