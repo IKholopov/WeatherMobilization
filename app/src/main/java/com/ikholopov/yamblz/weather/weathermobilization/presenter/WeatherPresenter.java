@@ -122,10 +122,10 @@ public class WeatherPresenter extends RxPresenter {
 
     Single<List<Weather>> filterOldAndMapToView(List<Forecast> forecasts) {
         Instant limit = Instant.now().minusSeconds(3600);
-        boolean isCelsius = preferences.getTemperatureFormat() == TemperatureFormat.CELSIUS;
+        TemperatureFormat format = TemperatureFormat.create(preferences.getTemperatureFormat());
         return Observable.fromIterable(forecasts)
                 .filter(forecast -> forecast.dateTime.isAfter(limit))
-                .map(forecast -> new Weather(forecast, isCelsius))
+                .map(forecast -> new Weather(forecast, format))
                 .subscribeOn(schedulers.computation())
                 .toList();
     }

@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 import com.ikholopov.yamblz.weather.weathermobilization.R;
 import com.ikholopov.yamblz.weather.weathermobilization.model.Forecast;
 import com.ikholopov.yamblz.weather.weathermobilization.model.WeatherState;
+import com.ikholopov.yamblz.weather.weathermobilization.model.preferences.TemperatureFormat;
 
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.format.DateTimeFormatter;
@@ -17,8 +18,6 @@ import org.threeten.bp.format.DateTimeFormatter;
 public class Weather {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MMM HH:mm");
-    private static final double FAHRENHEIT_SCALE = 9.0 / 5.0;
-    private static final double FAHRENHEIT_BASE = 32.0;
 
     public final String dateTime;
     public final double temperature;
@@ -32,18 +31,12 @@ public class Weather {
     @DrawableRes
     public final int weatherImageId;
 
-    public Weather(Forecast forecast, boolean inCelsius) {
+    public Weather(Forecast forecast, TemperatureFormat format) {
         this.dateTime = forecast.dateTime.atZone(ZoneId.systemDefault())
                 .toLocalDateTime().format(DATE_TIME_FORMATTER);
 
-        if(inCelsius){
-            temperatureUnit = R.string.celsius;
-            temperature = forecast.celsiusTemperature;
-        } else {
-            temperatureUnit = R.string.fahrenheit;
-            temperature = FAHRENHEIT_SCALE * forecast.celsiusTemperature + FAHRENHEIT_BASE;
-        }
-
+        this.temperatureUnit = format.unitStringId();
+        this.temperature = format.convert(forecast.celsiusTemperature);
         this.pressure = forecast.pressure;
         this.windSpeed = forecast.windSpeed;
         this.windDegree = forecast.windDegree;

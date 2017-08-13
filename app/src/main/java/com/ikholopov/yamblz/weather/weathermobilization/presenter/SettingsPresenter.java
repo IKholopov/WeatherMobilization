@@ -54,7 +54,7 @@ public class SettingsPresenter extends RxPresenter {
                 isCelsius ? CELSIUS : TemperatureFormat.FAHRENHEIT);
     }
 
-    private void saveInterval(int intervalId) {
+    void saveInterval(int intervalId) {
         Duration interval = format.getInterval(intervalId);
         preferences.putAutoUpdateInterval(interval);
         view.setUpdateInterval(format.getString(intervalId));
