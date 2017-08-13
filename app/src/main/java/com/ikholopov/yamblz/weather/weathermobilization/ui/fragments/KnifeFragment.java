@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ikholopov.yamblz.weather.weathermobilization.presenter.Unbindable;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -19,6 +21,7 @@ import butterknife.Unbinder;
 public class KnifeFragment extends Fragment {
 
     private Unbinder unbinder;
+    private Unbindable unbindable;
 
     /**
      * Need call from {{@link Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}}
@@ -28,9 +31,17 @@ public class KnifeFragment extends Fragment {
         return view;
     }
 
+    protected void save(Unbindable unbindable) {
+        this.unbindable = unbindable;
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+
+        if(unbindable != null) {
+            unbindable.unbind();
+        }
     }
 }

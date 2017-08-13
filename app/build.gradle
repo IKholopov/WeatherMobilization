@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -11,8 +12,8 @@ android {
         versionCode 2
         versionName "2.0.0"
 
-        resValue "string", "openweathermap_api_key", (project.findProperty("OPENWEATHERMAP_API_KEY") ?: "")
-        resValue "string", "google_api_key", (project.findProperty("GOOGLE_API_KEY") ?: "")
+        buildConfigField "String", "GOOGLE_API_KEY", (project.findProperty("GOOGLE_API_KEY") ?: "")
+        buildConfigField "String", "OPENWEATHERMAP_API_KEY", (project.findProperty("OPENWEATHERMAP_API_KEY") ?: "")
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
@@ -38,17 +39,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 ext.versions = [
         supportLibs : "25.3.1",
-        supportFix : "25.3.1.1",
         constraintLayout : "1.0.2",
+        room : "1.0.0-alpha5",
 
-        seekbar : "2.3.0",
-
+        threetenabp : "1.0.5",
         butterKnife : "8.7.0",
 
+        toggleButtonGroup : "1.0.2",
         dagger : "2.11",
 
         gson : "2.8.1",
@@ -74,10 +80,15 @@ dependencies {
     compile "com.android.support:design:$versions.supportLibs"
     compile "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
     compile "com.android.support:support-v4:$versions.supportLibs"
+    compile "com.android.support:cardview-v7:$versions.supportLibs"
 
-    compile "com.takisoft.fix:preference-v7:$versions.supportFix"
-    compile "com.pavelsikun:material-seekbar-preference:$versions.seekbar"
+    compile "android.arch.persistence.room:runtime:$versions.room"
+    compile "android.arch.persistence.room:rxjava2:$versions.room"
+    annotationProcessor "android.arch.persistence.room:compiler:$versions.room"
 
+    compile "com.nex3z:toggle-button-group:$versions.toggleButtonGroup"
+
+    compile "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
     compile "com.jakewharton:butterknife:$versions.butterKnife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
 

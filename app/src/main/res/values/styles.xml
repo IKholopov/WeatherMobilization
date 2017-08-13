@@ -1,27 +1,9 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="preferenceTheme">@style/AppTheme.PreferenceThemeOverlay</item>
-    </style>
-    <style name="AppTheme.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
-        <item name="android:layout">@layout/fragment_settings</item>
-    </style>
-    <style name="AppTheme.PlaneSwitcher">
-        <item name="android:colorForeground">@color/colorAccent</item>
-        <item name="colorSwitchThumbNormal">@color/colorAccent</item>
-        <item name="colorControlActivated">@color/colorAccent</item>
-    </style>
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>
-
-    <style name="AppTheme.FullWidthEditText" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@null</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -32,5 +14,21 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.FullWidthEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/textColorDark</item>
+    </style>
+
+
+    <style name="CompoundButtonTheme" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/textColorDark</item>
+        <item name="android:button">@null</item>
+        <item name="tbgMarkerColor">@color/colorAccent</item>
+    </style>
 
 </resources>

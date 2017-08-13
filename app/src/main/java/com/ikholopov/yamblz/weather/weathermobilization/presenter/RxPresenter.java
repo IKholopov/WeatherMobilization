@@ -12,7 +12,7 @@ import io.reactivex.disposables.Disposable;
  *
  * Created by turist on 02.08.2017.
  */
-public class RxPresenter {
+public class RxPresenter implements Unbindable {
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -23,6 +23,7 @@ public class RxPresenter {
         this.disposables.add(subscription);
     }
 
+    @Override
     @CallSuper
     public void unbind() {
         disposables.clear();
