@@ -27,6 +27,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 
@@ -50,16 +52,17 @@ public class WeatherFragment extends KnifeFragment implements WeatherView {
     @BindView(R.id.weather_message) TextView weatherMessage;
     @BindView(R.id.weather_icon) ImageView weatherIcon;
     @BindView(R.id.refresh_layout) SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.forecast) TextView forecastLabel;
 
     @BindView(R.id.temperature) TextView temperature;
-    @BindView(R.id.pressure_label) TextView pressureLabel;
     @BindView(R.id.pressure) TextView pressure;
-    @BindView(R.id.updated_label) TextView updatedLabel;
     @BindView(R.id.updated) TextView updated;
-    @BindView(R.id.wind_label) TextView windLabel;
     @BindView(R.id.wind_speed) TextView windSpeed;
     @BindView(R.id.wind_icon) ImageView windIcon;
+
+    @BindViews({ R.id.weather_icon, R.id.pressure_label, R.id.forecast, R.id.updated_label, R.id.wind_label, R.id.wind_icon })
+    List<View> viewsToHide;
+
+    static final ButterKnife.Setter<View, Boolean> VISIBLED = (view, value, index) -> view.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
 
     public static WeatherFragment create(City city) {
         WeatherFragment weatherFragment = new WeatherFragment();
@@ -91,7 +94,7 @@ public class WeatherFragment extends KnifeFragment implements WeatherView {
         weatherList.setAdapter(adapter);
         weatherList.setLayoutManager(getLayoutManager());
 
-        onError();
+        ButterKnife.apply(viewsToHide, VISIBLED, false);
 
         City city = getArguments().getParcelable(CITY_KEY);
         presenter.bind(this, city);
@@ -105,16 +108,10 @@ public class WeatherFragment extends KnifeFragment implements WeatherView {
     }
 
     private void setWeather(@NonNull Weather weather) {
-        weatherIcon.setVisibility(View.VISIBLE);
+        ButterKnife.apply(viewsToHide, VISIBLED, true);
+
         weatherIcon.setImageResource(weather.weatherImageId);
         weatherMessage.setText(weather.description);
-
-        forecastLabel.setVisibility(View.VISIBLE);
-        pressureLabel.setVisibility(View.VISIBLE);
-        updatedLabel.setVisibility(View.VISIBLE);
-        windLabel.setVisibility(View.VISIBLE);
-        windIcon.setVisibility(View.VISIBLE);
-
         updated.setText(weather.dateTime);
         pressure.setText(getString(R.string.pressure_format, weather.pressure));
         windSpeed.setText(getString(R.string.speed_format, weather.windSpeed));
@@ -125,19 +122,14 @@ public class WeatherFragment extends KnifeFragment implements WeatherView {
 
     @Override
     public void onError() {
-        forecastLabel.setVisibility(View.INVISIBLE);
-        pressureLabel.setVisibility(View.INVISIBLE);
-        updatedLabel.setVisibility(View.INVISIBLE);
-        windLabel.setVisibility(View.INVISIBLE);
-        weatherIcon.setVisibility(View.INVISIBLE);
-        windIcon.setVisibility(View.INVISIBLE);
+        ButterKnife.apply(viewsToHide, VISIBLED, false);
 
         updated.setText("");
         pressure.setText("");
         windSpeed.setText("");
         temperature.setText("");
 
-        weatherMessage.setText(R.string.swipe_down_to_refresh);
+        weatherMessage.setText(R.string.no_internet_swipe_down_to_refresh);
         onStopRefreshing();
     }
 

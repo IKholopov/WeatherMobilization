@@ -26,7 +26,8 @@
         <a href="http://www.freepik.com/free-photos-vectors/icon">Icon vector created by Anindyanfitri - Freepik.com</a></string>
     <string name="format_temperature" translatable="false"><xliff:g id="temp">%1.0f</xliff:g><xliff:g id="grad">%s</xliff:g></string>
 
-    <string name="swipe_down_to_refresh">No Internet connection\nSwipe down to refresh</string>
+    <string name="swipe_down_to_refresh">Swipe down to refresh</string>
+    <string name="no_internet_swipe_down_to_refresh">No Internet connection\nSwipe down to refresh</string>
     <string name="error_has_been">An error has occurred</string>
     <string name="click_city_to_show_weather">Choose a city to see the details</string>
     <string name="search_hint">City search</string>

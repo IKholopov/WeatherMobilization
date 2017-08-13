@@ -105,6 +105,7 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 
     debugCompile "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary"
 
     testCompile "junit:junit:$versions.junit"
     testCompile "org.mockito:mockito-core:$versions.mockito"

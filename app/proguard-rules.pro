@@ -28,6 +28,7 @@
 
 -keep class com.ikholopov.yamblz.weather.weathermobilization.model.network.dto.** { *; }
 -keep class com.ikholopov.yamblz.weather.weathermobilization.model.network.CityInfo { *; }
+-keep class com.ikholopov.yamblz.weather.weathermobilization.model.* { *; }
 
 # Retrofit 2.X
 ## https://square.github.io/retrofit/ ##
@@ -47,3 +48,6 @@
 # Retrolambda
 -dontwarn java.lang.invoke.*
 -dontwarn **$$Lambda$*
+
+-dontwarn android.arch.util.paging.CountedDataSource
+-dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource
